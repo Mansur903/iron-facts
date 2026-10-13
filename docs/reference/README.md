@@ -2,18 +2,17 @@
 
 ## Files
 
-- `assignment.pdf` — оригинальное тестовое задание.
 - `desktop.png` — desktop-макет.
 - `mobile.png` — mobile-макет.
 
+Точная расшифровка задания хранится вне reference-каталога: `../assignment.md`.
+
 ## Figma
 
-Figma URL: добавить позже.
+Рабочая копия: `https://www.figma.com/design/dCgNBuiICUtay8FMobj7Nt/Quiz--Copy-`.
 
-Текущий статус: официальный Figma MCP подключён, но исходный файл
-недоступен для чтения через MCP без права редактирования. Планируется
-создать копию файла в собственных Drafts и использовать ссылки на
-desktop- и mobile-фреймы.
+- Desktop frame: `1:1588`.
+- Mobile frame: `1:271`.
 
 ## Usage
 
