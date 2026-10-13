@@ -1,0 +1,221 @@
+:host {
+  display: block;
+}
+
+.site-header {
+  position: relative;
+  z-index: var(--z-header);
+  border-block-end: var(--border-width) solid var(--color-border);
+  background: var(--color-surface);
+
+  &__inner {
+    display: flex;
+    min-block-size: var(--header-height-mobile);
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  &__brand,
+  &__logo {
+    display: block;
+  }
+
+  &__brand {
+    min-inline-size: 4.5rem;
+    min-block-size: 1.75rem;
+  }
+
+  &__logo {
+    inline-size: auto;
+    block-size: 1.75rem;
+  }
+
+  &__desktop-nav,
+  &__desktop-cta {
+    display: none;
+  }
+
+  &__menu-trigger {
+    display: grid;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    place-content: center;
+    gap: 0.25rem;
+    border: 0;
+    padding: var(--space-2);
+    color: var(--color-text);
+    background: transparent;
+    cursor: pointer;
+
+    span {
+      display: block;
+      inline-size: 1.25rem;
+      block-size: 0.125rem;
+      background: currentColor;
+      transition: transform var(--duration-fast) var(--easing-standard);
+    }
+
+    &:active span {
+      transform: scaleX(0.8);
+    }
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  z-index: var(--z-dialog);
+  inset: 0;
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: 100dvh;
+  max-block-size: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  color: var(--color-text);
+  background: var(--color-surface);
+
+  &::backdrop {
+    background: var(--color-backdrop);
+  }
+
+  &__inner {
+    display: flex;
+    min-block-size: 100%;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    min-block-size: var(--header-height-mobile);
+    align-items: center;
+    justify-content: space-between;
+    border-block-end: var(--border-width) solid var(--color-border);
+  }
+
+  &__brand {
+    min-inline-size: 4.5rem;
+    min-block-size: 1.75rem;
+  }
+
+  &__logo {
+    inline-size: auto;
+    block-size: 1.75rem;
+  }
+
+  &__close {
+    position: relative;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border: 0;
+    padding: 0;
+    color: var(--color-text);
+    background: transparent;
+    cursor: pointer;
+
+    span {
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      inline-size: 1.125rem;
+      block-size: 0.125rem;
+      background: currentColor;
+
+      &:first-child {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:last-child {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-7);
+    padding-block: var(--space-9) var(--space-4);
+  }
+
+  &__link {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-navigation);
+    font-weight: 700;
+    line-height: var(--line-height-tight);
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &__cta {
+    inline-size: 100%;
+    margin-block-start: auto;
+  }
+}
+
+@media (min-width: 64rem) {
+  .site-header {
+    &__inner {
+      min-block-size: var(--header-height-desktop);
+    }
+
+    &__brand {
+      min-inline-size: 8.5rem;
+    }
+
+    &__logo {
+      block-size: 1.75rem;
+    }
+
+    &__desktop-nav {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(var(--space-4), 2.5vw, var(--space-8));
+    }
+
+    &__nav-link {
+      position: relative;
+      padding-block: var(--space-2);
+      font-family: var(--font-family-display);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &::after {
+        position: absolute;
+        inset-inline: 0;
+        inset-block-end: 0;
+        block-size: 0.125rem;
+        background: var(--color-brand);
+        content: '';
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform var(--duration-fast) var(--easing-standard);
+      }
+
+      &:hover::after,
+      &:active::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &__desktop-cta {
+      display: inline-block;
+    }
+
+    &__menu-trigger {
+      display: none;
+    }
+  }
+
+  .mobile-menu[open] {
+    display: none;
+  }
+}

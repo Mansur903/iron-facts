@@ -1,0 +1,29 @@
+@if (href(); as linkHref) {
+  <a
+    class="app-button"
+    [class.app-button--light]="appearance() === 'light'"
+    [class.app-button--compact]="size() === 'compact'"
+    [class.app-button--stretch]="stretch()"
+    [class.app-button--disabled]="disabled()"
+    [href]="linkHref"
+    [attr.aria-disabled]="disabled() ? 'true' : null"
+    [attr.tabindex]="disabled() ? -1 : null"
+    [attr.target]="external() ? '_blank' : null"
+    [attr.rel]="external() ? 'noopener noreferrer' : null"
+    (click)="onLinkClick($event)"
+  >
+    {{ label() }}
+  </a>
+} @else {
+  <button
+    class="app-button"
+    type="button"
+    [class.app-button--light]="appearance() === 'light'"
+    [class.app-button--compact]="size() === 'compact'"
+    [class.app-button--stretch]="stretch()"
+    [disabled]="disabled()"
+    (click)="onButtonClick()"
+  >
+    {{ label() }}
+  </button>
+}

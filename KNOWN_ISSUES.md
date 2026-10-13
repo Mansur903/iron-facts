@@ -24,3 +24,10 @@ Starter plan. Перед реализацией автоматической с�
 Значения организатора и адреса поддержки в footer пока сохранены как placeholders из макета:
 `[юридическое наименование ЦП]` и `[email]`. Они должны быть заменены фактическими данными через
 `public/config/site-content.json` до публикации.
+
+## Header visual verification
+
+Точный логотип предоставлен пользователем вручную и подключён локально. Его внутренний Figma
+node ID не был указан; в asset registry зафиксирован source frame Navbar `1:1548`. Mobile menu
+уточнено по переданному screenshot `375×775`, но отдельные screenshots Navbar `1:1548` и полного
+набора Button variants `1:1322` через Figma MCP всё ещё недоступны из-за лимита Starter plan.

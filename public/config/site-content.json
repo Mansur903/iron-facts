@@ -2,6 +2,12 @@
   "schemaVersion": 1,
   "navigation": {
     "brandLabel": "РЖД для людей",
+    "logo": {
+      "src": "assets/brand/logo.svg",
+      "alt": "",
+      "width": 185,
+      "height": 41
+    },
     "items": [
       {
         "label": "О проекте",

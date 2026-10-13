@@ -1,1 +1,120 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  color-scheme: light;
+
+  --color-brand: #e21a22;
+  --color-brand-hover: #c81018;
+  --color-brand-active: #a70d14;
+  --color-text: #1f1f1f;
+  --color-text-muted: #666666;
+  --color-text-on-brand: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f4f4f4;
+  --color-border: #d9d9d9;
+  --color-focus: #005fcc;
+  --color-backdrop: rgb(0 0 0 / 45%);
+  --color-disabled-background: #d8d8d8;
+  --color-disabled-text: #777777;
+
+  --font-family-body: Arial, "Helvetica Neue", sans-serif;
+  --font-family-display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: clamp(1.75rem, 4vw, 2.5rem);
+  --font-size-navigation: 1.5rem;
+  --line-height-tight: 1.05;
+  --line-height-body: 1.5;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.25rem;
+  --space-8: 3rem;
+  --space-9: 3.5rem;
+  --space-10: 4rem;
+
+  --container-page: 90rem;
+  --container-gutter: clamp(1rem, 3vw, 2.5rem);
+  --header-height-mobile: 3.5rem;
+  --header-height-desktop: 4rem;
+  --button-cut: 0.5rem;
+  --border-width: 0.0625rem;
+  --focus-ring-width: 0.1875rem;
+
+  --z-header: 100;
+  --z-dialog: 1000;
+
+  --duration-fast: 120ms;
+  --duration-normal: 220ms;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-inline-size: 20rem;
+  background: var(--color-surface);
+}
+
+body {
+  min-block-size: 100vh;
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-inline-size: 100%;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-width);
+}
+
+.app-container {
+  inline-size: min(100%, var(--container-page));
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { SiteContentService } from '../../core/content/site-content.service';
+import { SiteHeaderComponent } from '../../layout/site-header/site-header';
 
 @Component({
   selector: 'app-home-page',
+  imports: [SiteHeaderComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

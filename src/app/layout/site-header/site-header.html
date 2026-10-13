@@ -1,0 +1,109 @@
+<header class="site-header">
+  <div class="site-header__inner app-container">
+    <a class="site-header__brand" href="./" [attr.aria-label]="navigation().brandLabel">
+      @if (navigation().logo; as logo) {
+        <img
+          class="site-header__logo"
+          [src]="logo.src"
+          [alt]="logo.alt"
+          [attr.width]="logo.width ?? null"
+          [attr.height]="logo.height ?? null"
+        />
+      }
+    </a>
+
+    <nav class="site-header__desktop-nav" aria-label="Основная навигация">
+      @for (item of navigation().items; track item.href + item.label) {
+        <a
+          class="site-header__nav-link"
+          [href]="item.href"
+          [attr.target]="item.external ? '_blank' : null"
+          [attr.rel]="item.external ? 'noopener noreferrer' : null"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </nav>
+
+    <app-button
+      class="site-header__desktop-cta"
+      size="compact"
+      [label]="navigation().playLink.label"
+      [href]="navigation().playLink.href"
+      [external]="navigation().playLink.external ?? false"
+    />
+
+    <button
+      #menuTrigger
+      class="site-header__menu-trigger"
+      type="button"
+      aria-label="Открыть меню"
+      aria-controls="mobile-navigation-dialog"
+      [attr.aria-expanded]="isMenuOpen()"
+      (click)="onMenuOpen()"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<dialog
+  #mobileMenu
+  id="mobile-navigation-dialog"
+  class="mobile-menu"
+  aria-label="Меню сайта"
+  (close)="onDialogClosed()"
+  (keydown.escape)="onMenuEscape($event)"
+>
+  <div class="mobile-menu__inner">
+    <div class="mobile-menu__header app-container">
+      <a class="mobile-menu__brand" href="./" [attr.aria-label]="navigation().brandLabel">
+        @if (navigation().logo; as logo) {
+          <img
+            class="mobile-menu__logo"
+            [src]="logo.src"
+            [alt]="logo.alt"
+            [attr.width]="logo.width ?? null"
+            [attr.height]="logo.height ?? null"
+          />
+        }
+      </a>
+
+      <button
+        class="mobile-menu__close"
+        type="button"
+        aria-label="Закрыть меню"
+        autofocus
+        (click)="onMenuClose()"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu__navigation app-container" aria-label="Мобильная навигация">
+      @for (item of navigation().items; track item.href + item.label) {
+        <a
+          class="mobile-menu__link"
+          [href]="item.href"
+          [attr.target]="item.external ? '_blank' : null"
+          [attr.rel]="item.external ? 'noopener noreferrer' : null"
+          (click)="onMenuItemSelected()"
+        >
+          {{ item.label }}
+        </a>
+      }
+
+      <app-button
+        class="mobile-menu__cta"
+        [stretch]="true"
+        [label]="navigation().playLink.label"
+        [href]="navigation().playLink.href"
+        [external]="navigation().playLink.external ?? false"
+        (activated)="onMenuItemSelected()"
+      />
+    </nav>
+  </div>
+</dialog>

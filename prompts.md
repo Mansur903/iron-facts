@@ -583,3 +583,74 @@ Angular CLI MCP определил Angular 21 workspace. Единственна�
 повторялась. Строгая TypeScript-компиляция приложения и тестов прошла; все 5 test files и 21 test
 прошли. Production build, `git diff --check` и поиск временных Figma URL также завершились
 успешно. Коммит не создавался.
+
+---
+
+## Prompt 012 — Implement header and mobile navigation slice
+
+**Date:** 2026-10-13.
+
+**Goal:** реализовать только базовые design tokens, shared button, header, mobile menu и их
+интеграцию с ready-state без начала продуктовых секций.
+
+### Prompt
+
+Прочитать `AGENTS.md`, `docs/assignment.md`, `docs/task.md`, `ai_decisions.md` и
+`KNOWN_ISSUES.md`. Перед изменением Angular-кода один раз выполнить Angular CLI MCP
+`list_projects` и `get_best_practices`; известную ошибку `Unexpected response type` не повторять.
+
+Реализовать глобальные CSS custom-property tokens и base styles, standalone
+`AppButtonComponent`, standalone `SiteHeaderComponent`, закрытое/открытое mobile menu внутри
+header и подключить header к валидированному `content.navigation` в ready-state home. Использовать
+нативные button/link и `<dialog>`, обеспечить disabled, hover/active/focus-visible, Escape,
+возврат фокуса, закрытие после выбора пункта, безопасные external links и общую runtime-модель
+desktop/mobile. Не реализовывать hero, marquee, prizes, leaderboard, mechanics, final CTA или
+footer.
+
+Применить workflow `figma-design-to-code` к точечным узлам Navbar `1:1548`, Mobile menu
+`1:1540` и Button `1:1322`, не запрашивая повторно полные frames `1:1588` и `1:271`. При лимите
+не подменять оригинальные ассеты, не добавлять приблизительный логотип и явно перечислить
+непроверенное. Ассеты допустимы только через Figma workflow в `public/assets/...` с путями
+`assets/...`; обновить реестр реально добавленных файлов.
+
+Добавить полезные unit-тесты кнопки, header/menu и home integration. Если доступен browser tool,
+проверить `375×812`, `768×1024`, `1024×768`, `1440×900`, overflow, русские подписи, состояния,
+открытое меню и layout shifts. Затем выполнить production build, все тесты, `git diff --check`,
+поиск временных Figma URL и проверку неизменности зависимостей. Обновить документацию только для
+новых решений/ограничений и не создавать коммит.
+
+### Result
+
+Добавлены глобальные tokens/base styles, `AppButtonComponent`, `SiteHeaderComponent` с общей
+runtime-моделью desktop/mobile и нативное modal mobile menu. Ready-state home передаёт
+`content.navigation` в header; loading/error/retry сохранены, остальные секции не начаты. Mobile
+menu закрывается кнопкой, Escape и выбором пункта, возвращает фокус hamburger и автоматически
+закрывается при переходе на desktop. Production build прошёл. Все 7 test files и 30 unit-тестов
+прошли. `git diff --check` и поиск временных Figma URL прошли, зависимости не изменены.
+
+---
+
+## Prompt 013 — Add manually supplied header logo and mobile-menu reference
+
+**Date:** 2026-10-13.
+
+**Goal:** завершить точный ассет логотипа и уточнить mobile menu без дополнительных Figma MCP-
+вызовов.
+
+### Prompt
+
+Пользователь предоставил `LOGO.svg` и screenshot открытого mobile menu. Использовать только эти
+точные материалы вместо приблизительных замен.
+
+### Result
+
+Предоставленный SVG размером `185×41` сохранён в `public/assets/brand/logo.svg` и подключён через
+`navigation.logo` в `public/config/site-content.json` относительным путём `assets/brand/logo.svg`.
+Компонент по-прежнему не содержит хардкода ассета. В asset registry указан source frame Navbar
+`1:1548`; неизвестный ID внутреннего слоя не придумывался.
+
+По screenshot `375×775` уточнены центрирование и вертикальный ритм пунктов mobile menu, размер
+текста, размер close icon, нижний отступ CTA, размер обычной кнопки и срез только её нижнего
+правого угла. Production build прошёл, локальный SVG попал в build output, все 7 test files и
+30 unit-тестов прошли, `git diff --check` не нашёл ошибок, временных Figma URL нет. Новые
+зависимости не добавлялись, продуктовые секции не затрагивались.
