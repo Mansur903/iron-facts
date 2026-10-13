@@ -1,0 +1,29 @@
+<main>
+  @let state = siteContentService.state();
+
+  @switch (state.status) {
+    @case ('loading') {
+      <p role="status">Загрузка содержимого…</p>
+    }
+
+    @case ('error') {
+      <section role="alert" aria-labelledby="content-error-title">
+        <h1 id="content-error-title">Содержимое временно недоступно</h1>
+        <p>{{ state.message }}</p>
+
+        @if (state.detail) {
+          <details>
+            <summary>Технические подробности</summary>
+            <code>{{ state.detail }}</code>
+          </details>
+        }
+
+        <button type="button" (click)="onRetry()">Повторить загрузку</button>
+      </section>
+    }
+
+    @case ('ready') {
+      <p role="status">Содержимое страницы загружено.</p>
+    }
+  }
+</main>

@@ -361,3 +361,198 @@ mobile (`1:271`), а также контексты семи перечислен
 
 Создан один локальный коммит `docs: approve homepage architecture`. Отправка в remote-репозиторий
 не выполнялась.
+
+---
+
+## Prompt 007 — Runtime content configuration
+
+**Date:** 2026-10-13.
+
+**Goal:** реализовать второй этап утверждённого плана — типизированную runtime-конфигурацию,
+валидацию, загрузку, состояния shell и unit-тесты без продуктовой вёрстки.
+
+### Prompt
+
+Прочитай `AGENTS.md`, `docs/assignment.md`, `docs/task.md`, `ai_decisions.md` и
+`KNOWN_ISSUES.md`.
+
+Реализуй только следующий этап утверждённого плана: runtime-конфигурацию контента. Не начинай
+визуальную вёрстку секций и не скачивай Figma-ассеты.
+
+Перед изменением Angular-кода:
+
+1. Используй Angular CLI MCP `list_projects`.
+2. Один раз попробуй получить `get_best_practices`.
+3. Если снова возникнет уже известная ошибка `Unexpected response type`, не повторяй вызов и
+   продолжи на основании конфигурации репозитория и официальной документации Angular.
+
+Не добавляй сторонние зависимости.
+
+Нужно реализовать:
+
+1. Строго типизированные модели runtime-контента: `SiteContent`, navigation, hero и hero slides,
+   prizes, leaderboard, mechanics, final CTA, footer и ссылки на ассеты.
+2. `public/config/site-content.json` со `schemaVersion` и фактическими текстами и данными страницы.
+   Контент не должен дублироваться в TypeScript; для уточнения текстов разрешён только read-only
+   Figma MCP; временные Figma URL запрещены.
+3. Небольшой собственный runtime-валидатор: поддерживаемая версия схемы, обязательные объекты и
+   массивы, основные строки и числа, путь первого ошибочного поля, без сторонней библиотеки.
+4. `SiteContentService`: загрузка через `HttpClient`, readonly signal-состояние
+   `loading | ready | error`, отсутствие публикации частичных данных, публичный retry, безопасное
+   сообщение и подробность только в development-режиме.
+5. Инициализацию через `provideHttpClient` и `provideAppInitializer`, которая завершается даже при
+   ошибке загрузки.
+6. Минимальный route/home shell для `/`, wildcard redirect, loading/error/ready, доступную retry-
+   кнопку, без продуктовой вёрстки.
+7. Unit-тесты валидной конфигурации, невалидного обязательного поля, неподдерживаемой версии,
+   успешной загрузки, HTTP-ошибки, retry и отсутствия публикации частично валидных данных.
+
+Соблюдай strict typing, standalone architecture, `OnPush`, signals и стандартный префикс `app`.
+
+После реализации запусти production build и все unit-тесты, выполни `git diff --check`, проверь
+отсутствие временных Figma URL, обнови `prompts.md`, а новые решения или ограничения зафиксируй в
+соответствующем Markdown-документе. Не создавай коммит без отдельного подтверждения.
+
+### Result
+
+Angular CLI MCP `list_projects` обнаружил Angular 21 workspace `iron-facts`. Единственный вызов
+`get_best_practices` вернул известную ошибку `Unexpected response type` и не повторялся.
+
+Добавлены типизированная схема `SiteContent`, runtime JSON, собственный валидатор с первым
+ошибочным JSON-path, signal-based `SiteContentService`, `provideHttpClient`, современный
+`provideAppInitializer`, маршрут `/`, wildcard redirect и минимальный shell для состояний
+loading/error/ready с retry-кнопкой. Продуктовая вёрстка и Figma-ассеты не добавлялись; новые
+зависимости не устанавливались.
+
+Read-only уточнение текстов через Figma MCP не удалось из-за лимита Starter plan и не
+повторялось. Конфигурация основана на локальных reference-материалах. Поэтому подтверждён один
+видимый hero-slide, а placeholders footer сохранены как runtime-данные и записаны в
+`KNOWN_ISSUES.md`. Asset references необязательны до появления локальных файлов, а валидатор
+отклоняет внешние asset URL; решение дополнено в `ai_decisions.md`.
+
+### Verification
+
+- Production build — успешно.
+- Unit tests — 4 test files, 13 tests, все успешно.
+- Поставляемый `public/config/site-content.json` отдельно проходит runtime-валидатор в unit-тесте.
+- Сторонние зависимости не добавлены.
+- Продуктовая вёрстка и ассеты не добавлены.
+- Коммит не создавался.
+
+---
+
+## Prompt 008 — Separate service types, constants and HTTP error formatting
+
+**Date:** 2026-10-13.
+
+**Goal:** уменьшить ответственность `SiteContentService` без изменения его публичного поведения.
+
+### Improved prompt
+
+Проведи сфокусированный рефакторинг runtime-content слоя.
+
+1. Вынеси из `SiteContentService` типы состояния и причин ошибки в отдельный model-файл рядом с
+   content domain.
+2. Вынеси URL runtime-конфигурации и системные пользовательские сообщения в отдельный
+   constants-файл.
+3. Вынеси `describeHttpError` из сервиса в переиспользуемый helper внутри `core/http`.
+4. Обнови все production- и test-импорты. Не оставляй compatibility re-export из сервиса, если он
+   не нужен текущему коду.
+5. Добавь прямые unit-тесты для вынесенного HTTP helper; существующее поведение сервиса и его
+   тестовые сценарии должны сохраниться.
+
+Ограничения:
+
+- не меняй runtime-контракт, тексты сообщений и поведение `loading | ready | error`;
+- не добавляй зависимости;
+- не затрагивай продуктовую вёрстку и контент JSON;
+- соблюдай strict typing и текущие правила импортов;
+- не создавай коммит без отдельного подтверждения.
+
+После изменений запусти production build, все unit-тесты и `git diff --check`. Если полноценный
+Angular-запуск блокируется sandbox-ограничениями, выполни доступные TypeScript-проверки и явно
+сообщи, какие проверки не удалось повторить.
+
+### Result
+
+`SiteContentState` и `SiteContentErrorReason` перенесены в `site-content-state.model.ts`. URL и
+пользовательские сообщения перенесены в `site-content.constants.ts`. `describeHttpError` перенесён
+в переиспользуемый `core/http/describe-http-error.ts` и получил отдельные unit-тесты. Production-
+и test-импорты обновлены; публичное поведение сервиса и runtime-контракт не менялись, зависимости
+не добавлялись.
+
+Angular CLI MCP обнаружил Angular 21 workspace. Единственный вызов `get_best_practices` снова
+вернул `Unexpected response type` и не повторялся. Строгая TypeScript-компиляция `tsconfig.app.json`
+и `tsconfig.spec.json` прошла успешно. Angular production build и unit-тесты в sandbox были
+заблокированы ошибкой доступа к родительским каталогам; повторный запуск вне sandbox не был
+разрешён, поэтому эти две проверки после рефакторинга не подтверждены.
+
+---
+
+## Prompt 009 — Runtime path and link safety corrections
+
+**Date:** 2026-10-13.
+
+**Goal:** минимально скорректировать runtime-config для размещения приложения в подпапке и
+зафиксировать простые безопасные соглашения для будущих путей.
+
+### Prompt
+
+Проведи минимальную корректировку runtime-config этапа. Не начинай вёрстку и не создавай коммит.
+
+1. Замени URL конфигурации `/config/site-content.json` на `config/site-content.json`, чтобы он
+   работал при размещении приложения в подпапке.
+2. Зафиксируй соглашение для будущих ассетов: файлы находятся в `public/assets/...`, а JSON
+   использует пути `assets/...`. Валидатор должен отклонять внешние URL, `..` и обратные слеши.
+3. Оставь для `ContentLink.href` простую проверку строки, но отклоняй `javascript:`, `data:` и
+   protocol-relative URL с `//`. Не добавляй сложный URL parser и проверки уникальности
+   идентификаторов или позиций рейтинга.
+4. Добавь только минимальные unit-тесты: локальный путь `assets/...` принимается, внешний asset
+   URL отклоняется, `javascript:` отклоняется, а поставляемый `site-content.json` остаётся
+   валидным.
+5. При необходимости обнови соглашение в `ai_decisions.md` и добавь запрос с результатом в
+   `prompts.md`.
+
+После изменений запусти production build, unit-тесты, `git diff --check` и поиск временных Figma
+URL. Не добавляй зависимости и не создавай коммит. Покажи изменённые файлы и результаты проверок.
+
+### Result
+
+URL runtime-конфигурации изменён на относительный `config/site-content.json`. Для asset references
+принято соглашение `public/assets/...` на диске и `assets/...` в JSON; валидатор отклоняет внешние
+URL, `..` и обратные слеши. `ContentLink.href` дополнительно отклоняет `javascript:`, `data:` и
+значения, начинающиеся с `//`, без полноценного URL parser и дополнительных проверок
+уникальности.
+
+Добавлены три новых теста валидатора; существующий тест продолжает проверять поставляемый
+`site-content.json`. Production build прошёл успешно. Все 5 test files и 19 tests прошли.
+Зависимости и продуктовая вёрстка не изменялись, коммит не создавался.
+
+---
+
+## Prompt 010 — Commit runtime content configuration
+
+**Date:** 2026-10-13.
+
+**Goal:** проверить границы runtime-config этапа и сохранить его одним сфокусированным локальным
+коммитом.
+
+### Prompt
+
+Проверь, что текущие изменения относятся только к этапу runtime-конфигурации, его тестам и
+сопровождающей документации.
+
+Добавь этот запрос и результат в `prompts.md`, выполни `git diff --check` и создай коммит:
+
+`feat: add runtime content configuration`
+
+Не отправляй коммит в remote. После создания покажи hash коммита и итоговый `git status`.
+
+### Result
+
+Проверены tracked и untracked изменения. Production-код ограничен runtime JSON, типизированными
+моделями, валидатором, сервисом загрузки, HTTP error helper, инициализацией и минимальным
+loading/error/ready shell. Остальные изменения — unit-тесты, test-конфигурация и сопровождающие
+`prompts.md`, `ai_decisions.md`, `KNOWN_ISSUES.md`. Продуктовые секции, Figma-ассеты, зависимости
+и dependency-файлы не изменялись. Изменения подготовлены к одному локальному коммиту; push не
+выполняется.
