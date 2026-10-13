@@ -556,3 +556,30 @@ loading/error/ready shell. Остальные изменения — unit-тес
 `prompts.md`, `ai_decisions.md`, `KNOWN_ISSUES.md`. Продуктовые секции, Figma-ассеты, зависимости
 и dependency-файлы не изменялись. Изменения подготовлены к одному локальному коммиту; push не
 выполняется.
+
+---
+
+## Prompt 011 — Replace manual content validation with Valibot
+
+**Date:** 2026-10-13.
+
+**Goal:** упростить сложный ручной runtime-валидатор с помощью декларативной schema-библиотеки.
+
+### Prompt
+
+Пользователь попросил оценить способы упрощения функций в `site-content.validator.ts`, после
+обсуждения альтернатив выбрал Valibot и поручил использовать его.
+
+### Result
+
+Добавлен Valibot 1.5 как единственная новая production-зависимость. Структура runtime-контента
+перенесена в декларативные схемы `site-content.schema.ts`; TypeScript-модели теперь выводятся из
+этих схем и сохраняют глубокую readonly-типизацию. Валидатор сокращён до адаптера результата
+`safeParse`, который сохраняет прежние error codes, сообщения и формат пути первого ошибочного
+поля. Проверки версии схемы, локальных asset paths и опасных link prefixes сохранены.
+
+Angular CLI MCP определил Angular 21 workspace. Единственная попытка получить
+`get_best_practices` снова завершилась известной ошибкой `Unexpected response type` и не
+повторялась. Строгая TypeScript-компиляция приложения и тестов прошла; все 5 test files и 21 test
+прошли. Production build, `git diff --check` и поиск временных Figma URL также завершились
+успешно. Коммит не создавался.

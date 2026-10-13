@@ -1,3 +1,5 @@
+export const SITE_CONTENT_SCHEMA_VERSION = 1;
+
 export const SITE_CONTENT_URL = 'config/site-content.json';
 
 export const SITE_CONTENT_LOAD_ERROR_MESSAGE =

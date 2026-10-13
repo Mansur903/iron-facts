@@ -1,5 +1,6 @@
-import { SiteContent } from './site-content.model';
-import { SITE_CONTENT_SCHEMA_VERSION, validateSiteContent } from './site-content.validator';
+import type { SiteContent } from './site-content.model';
+import { SITE_CONTENT_SCHEMA_VERSION } from './site-content.constants';
+import { validateSiteContent } from './site-content.validator';
 import siteContent from '../../../../public/config/site-content.json';
 
 describe('validateSiteContent', () => {
@@ -91,6 +92,41 @@ describe('validateSiteContent', () => {
         code: 'invalid-type',
         path: '$.hero.title',
         message: 'Expected a string.',
+      },
+    });
+  });
+
+  it('distinguishes a missing field from an invalid field type', () => {
+    const content = createValidContent();
+    const { title: _title, ...heroWithoutTitle } = content.hero;
+    const invalidContent = { ...content, hero: heroWithoutTitle };
+
+    expect(validateSiteContent(invalidContent)).toEqual({
+      valid: false,
+      error: {
+        code: 'missing-field',
+        path: '$.hero.title',
+        message: 'Required field is missing.',
+      },
+    });
+  });
+
+  it('reports an unsupported prize variant as an invalid value', () => {
+    const content = createValidContent();
+    const invalidContent = {
+      ...content,
+      prizes: {
+        ...content.prizes,
+        items: [{ ...content.prizes.items[0], variant: 'unknown' }],
+      },
+    };
+
+    expect(validateSiteContent(invalidContent)).toEqual({
+      valid: false,
+      error: {
+        code: 'invalid-value',
+        path: '$.prizes.items[0].variant',
+        message: 'Expected guaranteed, knowledge, or grand.',
       },
     });
   });

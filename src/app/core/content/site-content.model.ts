@@ -1,114 +1,42 @@
-export interface AssetReference {
-  readonly src: string;
-  readonly alt: string;
-  readonly width?: number;
-  readonly height?: number;
-}
+import type * as v from 'valibot';
 
-export interface ContentLink {
-  readonly label: string;
-  readonly href: string;
-  readonly external?: boolean;
-}
+import type {
+  assetReferenceSchema,
+  contentLinkSchema,
+  finalCtaContentSchema,
+  footerContentSchema,
+  heroContentSchema,
+  heroSlideSchema,
+  leaderboardContentSchema,
+  leaderboardEntrySchema,
+  mechanicStatSchema,
+  mechanicsContentSchema,
+  navigationContentSchema,
+  prizeItemSchema,
+  prizesContentSchema,
+  siteContentSchema,
+} from './site-content.schema';
 
-export interface NavigationContent {
-  readonly brandLabel: string;
-  readonly logo?: AssetReference;
-  readonly items: readonly ContentLink[];
-  readonly playLink: ContentLink;
-}
+type DeepReadonly<T> = T extends readonly (infer TItem)[]
+  ? readonly DeepReadonly<TItem>[]
+  : T extends object
+    ? { readonly [TKey in keyof T]: DeepReadonly<T[TKey]> }
+    : T;
 
-export interface HeroSlide {
-  readonly id: string;
-  readonly eyebrow: string;
-  readonly statement: string;
-  readonly yesLabel: string;
-  readonly noLabel: string;
-  readonly image?: AssetReference;
-}
-
-export interface HeroContent {
-  readonly eyebrow: string;
-  readonly title: string;
-  readonly description: string;
-  readonly marqueeText: string;
-  readonly playLink: ContentLink;
-  readonly rotationIntervalMs: number;
-  readonly slides: readonly HeroSlide[];
-}
-
-export type PrizeVariant = 'guaranteed' | 'knowledge' | 'grand';
-
-export interface PrizeItem {
-  readonly id: string;
-  readonly eyebrow: string;
-  readonly title: string;
-  readonly description: string;
-  readonly variant: PrizeVariant;
-  readonly image?: AssetReference;
-}
-
-export interface PrizesContent {
-  readonly eyebrow: string;
-  readonly title: string;
-  readonly description: string;
-  readonly rules: readonly string[];
-  readonly playLink: ContentLink;
-  readonly items: readonly PrizeItem[];
-}
-
-export interface LeaderboardEntry {
-  readonly position: number;
-  readonly name: string;
-  readonly score: number;
-  readonly avatar?: AssetReference;
-}
-
-export interface LeaderboardContent {
-  readonly eyebrow: string;
-  readonly title: string;
-  readonly scoreLabel: string;
-  readonly resultsLink: ContentLink;
-  readonly entries: readonly LeaderboardEntry[];
-}
-
-export interface MechanicStat {
-  readonly value: number;
-  readonly label: string;
-  readonly description: string;
-}
-
-export interface MechanicsContent {
-  readonly eyebrow: string;
-  readonly title: string;
-  readonly stats: readonly MechanicStat[];
-}
-
-export interface FinalCtaContent {
-  readonly title: string;
-  readonly description: string;
-  readonly playLink: ContentLink;
-  readonly image?: AssetReference;
-}
-
-export interface FooterContent {
-  readonly brandLabel: string;
-  readonly description: string;
-  readonly organizer: string;
-  readonly supportEmail: string;
-  readonly legalLinks: readonly ContentLink[];
-  readonly socialLinks: readonly ContentLink[];
-  readonly copyright: string;
-  readonly logo?: AssetReference;
-}
-
-export interface SiteContent {
-  readonly schemaVersion: number;
-  readonly navigation: NavigationContent;
-  readonly hero: HeroContent;
-  readonly prizes: PrizesContent;
-  readonly leaderboard: LeaderboardContent;
-  readonly mechanics: MechanicsContent;
-  readonly finalCta: FinalCtaContent;
-  readonly footer: FooterContent;
-}
+export type AssetReference = DeepReadonly<v.InferOutput<typeof assetReferenceSchema>>;
+export type ContentLink = DeepReadonly<v.InferOutput<typeof contentLinkSchema>>;
+export type NavigationContent = DeepReadonly<v.InferOutput<typeof navigationContentSchema>>;
+export type HeroSlide = DeepReadonly<v.InferOutput<typeof heroSlideSchema>>;
+export type HeroContent = DeepReadonly<v.InferOutput<typeof heroContentSchema>>;
+export type PrizeVariant = v.InferOutput<typeof prizeItemSchema>['variant'];
+export type PrizeItem = DeepReadonly<v.InferOutput<typeof prizeItemSchema>>;
+export type PrizesContent = DeepReadonly<v.InferOutput<typeof prizesContentSchema>>;
+export type LeaderboardEntry = DeepReadonly<v.InferOutput<typeof leaderboardEntrySchema>>;
+export type LeaderboardContent = DeepReadonly<
+  v.InferOutput<typeof leaderboardContentSchema>
+>;
+export type MechanicStat = DeepReadonly<v.InferOutput<typeof mechanicStatSchema>>;
+export type MechanicsContent = DeepReadonly<v.InferOutput<typeof mechanicsContentSchema>>;
+export type FinalCtaContent = DeepReadonly<v.InferOutput<typeof finalCtaContentSchema>>;
+export type FooterContent = DeepReadonly<v.InferOutput<typeof footerContentSchema>>;
+export type SiteContent = DeepReadonly<v.InferOutput<typeof siteContentSchema>>;

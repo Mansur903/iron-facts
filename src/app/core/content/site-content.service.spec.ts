@@ -4,11 +4,11 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   SITE_CONTENT_LOAD_ERROR_MESSAGE,
+  SITE_CONTENT_SCHEMA_VERSION,
   SITE_CONTENT_URL,
 } from './site-content.constants';
-import { SiteContent } from './site-content.model';
+import type { SiteContent } from './site-content.model';
 import { SiteContentService } from './site-content.service';
-import { SITE_CONTENT_SCHEMA_VERSION } from './site-content.validator';
 
 describe('SiteContentService', () => {
   let httpTestingController: HttpTestingController;
