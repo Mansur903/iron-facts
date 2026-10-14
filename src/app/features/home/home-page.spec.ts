@@ -7,6 +7,7 @@ import { SiteContentState } from '../../core/content/site-content-state.model';
 import { SiteContentService } from '../../core/content/site-content.service';
 import { validateSiteContent } from '../../core/content/site-content.validator';
 import { SiteHeaderComponent } from '../../layout/site-header/site-header';
+import { SiteFooterComponent } from '../../layout/site-footer/site-footer';
 import siteContent from '../../../../public/config/site-content.json';
 import { FinalCtaSectionComponent } from './final-cta-section/final-cta-section';
 import { HeroSectionComponent } from './hero-section/hero-section';
@@ -80,6 +81,8 @@ describe('HomePageComponent', () => {
       .componentInstance as MechanicsSectionComponent;
     const finalCta = fixture.debugElement.query(By.directive(FinalCtaSectionComponent))
       .componentInstance as FinalCtaSectionComponent;
+    const footer = fixture.debugElement.query(By.directive(SiteFooterComponent))
+      .componentInstance as SiteFooterComponent;
 
     expect(header.navigation()).toEqual(validationResult.value.navigation);
     expect(hero.content()).toEqual(validationResult.value.hero);
@@ -87,6 +90,7 @@ describe('HomePageComponent', () => {
     expect(leaderboard.content()).toEqual(validationResult.value.leaderboard);
     expect(mechanics.content()).toEqual(validationResult.value.mechanics);
     expect(finalCta.content()).toEqual(validationResult.value.finalCta);
+    expect(footer.content()).toEqual(validationResult.value.footer);
     expect(fixture.nativeElement.textContent).not.toContain(
       'Содержимое страницы загружено',
     );

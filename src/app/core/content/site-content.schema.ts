@@ -59,6 +59,7 @@ export const contentLinkSchema = v.object(
       v.check(isSafeLinkHref, 'Link href uses a prohibited URL scheme or prefix.'),
     ),
     external: v.optional(v.boolean('Expected a boolean.')),
+    icon: v.optional(assetReferenceSchema),
   },
   EXPECTED_OBJECT_MESSAGE,
 );
@@ -193,7 +194,9 @@ export const footerContentSchema = v.object(
   {
     brandLabel: nonEmptyStringSchema,
     description: nonEmptyStringSchema,
+    organizerLabel: v.optional(nonEmptyStringSchema),
     organizer: nonEmptyStringSchema,
+    supportLabel: v.optional(nonEmptyStringSchema),
     supportEmail: nonEmptyStringSchema,
     legalLinks: nonEmptyArray(contentLinkSchema),
     socialLinks: nonEmptyArray(contentLinkSchema),

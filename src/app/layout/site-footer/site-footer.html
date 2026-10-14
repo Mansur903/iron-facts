@@ -1,0 +1,82 @@
+<footer class="site-footer">
+  <div class="site-footer__inner app-container">
+    @if (content().logo; as logo) {
+      <div class="site-footer__logo" role="img" [attr.aria-label]="logo.alt">
+        <img
+          class="site-footer__logo-mark"
+          [src]="logo.src"
+          alt=""
+          [attr.width]="logo.width ?? null"
+          [attr.height]="logo.height ?? null"
+          aria-hidden="true"
+        />
+        <img
+          class="site-footer__logo-lettering"
+          [src]="logo.src"
+          alt=""
+          [attr.width]="logo.width ?? null"
+          [attr.height]="logo.height ?? null"
+          aria-hidden="true"
+        />
+      </div>
+    }
+
+    <div class="site-footer__intro">
+      <h2 class="site-footer__title">{{ content().brandLabel }}</h2>
+      <p class="site-footer__description">{{ content().description }}</p>
+    </div>
+
+    <address class="site-footer__contact">
+      <div class="site-footer__contact-group">
+        @if (content().organizerLabel; as label) {
+          <strong>{{ label }}</strong>
+        }
+        <span>{{ content().organizer }}</span>
+      </div>
+      <div class="site-footer__contact-group">
+        @if (content().supportLabel; as label) {
+          <strong>{{ label }}</strong>
+        }
+        <span>{{ content().supportEmail }}</span>
+      </div>
+    </address>
+
+    <nav class="site-footer__legal" aria-label="Юридическая информация">
+      @for (link of content().legalLinks; track link.href + link.label) {
+        <a
+          [href]="link.href"
+          [attr.target]="link.external ? '_blank' : null"
+          [attr.rel]="link.external ? 'noopener noreferrer' : null"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+
+    <nav class="site-footer__social" aria-label="Социальные сети">
+      @for (link of content().socialLinks; track link.href + link.label) {
+        <a
+          [href]="link.href"
+          [attr.aria-label]="link.label"
+          [attr.target]="link.external ? '_blank' : null"
+          [attr.rel]="link.external ? 'noopener noreferrer' : null"
+        >
+          @if (link.icon; as icon) {
+            <img
+              [src]="icon.src"
+              [alt]="icon.alt"
+              [attr.width]="icon.width ?? null"
+              [attr.height]="icon.height ?? null"
+              loading="lazy"
+              decoding="async"
+            />
+          } @else {
+            {{ link.label }}
+          }
+        </a>
+      }
+    </nav>
+
+    <small class="site-footer__copyright">{{ content().copyright }}</small>
+  </div>
+</footer>

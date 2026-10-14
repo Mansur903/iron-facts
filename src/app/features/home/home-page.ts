@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { SiteContentService } from '../../core/content/site-content.service';
+import { SiteFooterComponent } from '../../layout/site-footer/site-footer';
 import { SiteHeaderComponent } from '../../layout/site-header/site-header';
 import { FinalCtaSectionComponent } from './final-cta-section/final-cta-section';
 import { HeroSectionComponent } from './hero-section/hero-section';
@@ -16,6 +17,7 @@ import { PrizesSectionComponent } from './prizes-section/prizes-section';
     LeaderboardSectionComponent,
     MechanicsSectionComponent,
     PrizesSectionComponent,
+    SiteFooterComponent,
     SiteHeaderComponent,
   ],
   templateUrl: './home-page.html',

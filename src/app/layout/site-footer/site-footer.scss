@@ -1,0 +1,244 @@
+:host {
+  display: block;
+}
+
+.site-footer {
+  min-block-size: 37.5rem;
+  color: var(--color-text-on-brand);
+  background: var(--color-footer-background);
+
+  &__inner {
+    display: flex;
+    min-block-size: 37.5rem;
+    flex-direction: column;
+    padding-block: 1.5rem 2.75rem;
+  }
+
+  &__logo {
+    position: relative;
+    inline-size: 7.5rem;
+    block-size: 1.6875rem;
+
+    img {
+      position: absolute;
+      inset: 0;
+      max-inline-size: none;
+      transform: scale(0.65);
+      transform-origin: left top;
+    }
+  }
+
+  &__logo-mark {
+    clip-path: inset(0 119px 0 0);
+  }
+
+  &__logo-lettering {
+    clip-path: inset(0 0 0 66px);
+    filter: brightness(0) invert(1);
+  }
+
+  &__intro {
+    margin-block-start: 2rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: var(--font-family-hero);
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    max-inline-size: 25rem;
+    margin: 1rem 0 0;
+    line-height: 1.35;
+  }
+
+  &__contact {
+    display: grid;
+    gap: 1.125rem;
+    margin-block-start: 1.125rem;
+    font-style: normal;
+    line-height: 1.35;
+  }
+
+  &__contact-group {
+    display: grid;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  &__legal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-block-start: 1rem;
+
+    a {
+      text-decoration: underline;
+      text-underline-offset: 0.12em;
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-block-start: 2rem;
+
+    a {
+      display: inline-flex;
+      min-inline-size: 3rem;
+      min-block-size: 3rem;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--duration-fast) var(--easing-standard);
+
+      &:hover {
+        transform: translateY(-0.125rem);
+      }
+    }
+  }
+
+  &__copyright {
+    margin-block-start: auto;
+    font-size: var(--font-size-md);
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 74.999rem) {
+  .site-footer {
+    min-block-size: 30rem;
+
+    &__inner {
+      display: grid;
+      min-block-size: 30rem;
+      grid-template-areas:
+        'logo social'
+        'intro contact'
+        'legal legal'
+        'copyright copyright';
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr auto auto;
+      column-gap: var(--space-6);
+      padding-block: 2.5rem;
+    }
+
+    &__logo {
+      grid-area: logo;
+    }
+
+    &__intro {
+      grid-area: intro;
+    }
+
+    &__contact {
+      grid-area: contact;
+      align-content: start;
+      justify-items: end;
+      margin-block-start: 2rem;
+      text-align: right;
+    }
+
+    &__legal {
+      grid-area: legal;
+      flex-direction: row;
+      flex-wrap: wrap;
+      column-gap: 1.5rem;
+    }
+
+    &__social {
+      grid-area: social;
+      justify-self: end;
+      margin: 0;
+    }
+
+    &__copyright {
+      grid-area: copyright;
+      margin-block-start: 2rem;
+    }
+  }
+}
+
+@media (min-width: 75rem) {
+  .site-footer {
+    min-block-size: 25rem;
+
+    &__inner {
+      display: grid;
+      min-block-size: 25rem;
+      grid-template-areas:
+        'logo social'
+        'intro contact'
+        'copyright legal';
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: 2.5625rem 1fr auto;
+      column-gap: var(--space-6);
+      padding-block: 2.5rem;
+    }
+
+    &__logo {
+      grid-area: logo;
+      inline-size: 11.5625rem;
+      block-size: 2.5625rem;
+
+      img {
+        transform: none;
+      }
+    }
+
+    &__intro {
+      grid-area: intro;
+      margin-block-start: 4rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__description {
+      margin-block-start: 1.25rem;
+    }
+
+    &__contact {
+      grid-area: contact;
+      align-content: start;
+      justify-items: end;
+      margin-block-start: 4rem;
+      text-align: right;
+    }
+
+    &__legal {
+      grid-area: legal;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 0;
+
+      a {
+        white-space: nowrap;
+      }
+    }
+
+    &__social {
+      grid-area: social;
+      justify-self: end;
+      margin: 0;
+    }
+
+    &__copyright {
+      grid-area: copyright;
+      align-self: end;
+      margin: 0;
+    }
+  }
+}

@@ -270,8 +270,10 @@
   },
   "footer": {
     "brandLabel": "Железные факты",
-    "description": "Интерактивный проект о людях, профессиях и технологиях РЖД.",
-    "organizer": "[юридическое наименование ЦП]",
+    "description": "Интерактивный проект о людях, профессиях и технологиях РЖД",
+    "organizerLabel": "Организатор акции:",
+    "organizer": "[юридическое наименование ЦПР]",
+    "supportLabel": "Поддержка:",
     "supportEmail": "[email]",
     "legalLinks": [
       {
@@ -290,13 +292,31 @@
     "socialLinks": [
       {
         "label": "ВКонтакте",
-        "href": "#vk"
+        "href": "#vk",
+        "icon": {
+          "src": "assets/footer/vk.svg",
+          "alt": "",
+          "width": 48,
+          "height": 48
+        }
       },
       {
         "label": "Telegram",
-        "href": "#telegram"
+        "href": "#telegram",
+        "icon": {
+          "src": "assets/footer/telegram.svg",
+          "alt": "",
+          "width": 48,
+          "height": 48
+        }
       }
     ],
-    "copyright": "© 2026"
+    "copyright": "©2026",
+    "logo": {
+      "src": "assets/brand/logo.svg",
+      "alt": "РЖД для людей дела",
+      "width": 185,
+      "height": 41
+    }
   }
 }
