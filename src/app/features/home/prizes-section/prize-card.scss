@@ -98,7 +98,7 @@
   }
 }
 
-@media (max-width: 37.499rem) {
+@media (width < 37.5rem) {
   .prize-card {
     min-block-size: 30rem;
     padding: var(--space-5) var(--space-4);

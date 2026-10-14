@@ -194,7 +194,7 @@
   }
 }
 
-@media (max-width: 37.499rem) {
+@media (width < 37.5rem) {
   .hero-card {
     min-block-size: 15.375rem;
     padding: var(--space-4);

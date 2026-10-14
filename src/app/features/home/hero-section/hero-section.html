@@ -13,7 +13,7 @@
     />
   </div>
 
-  <div class="hero__layout app-container">
+  <div id="play" class="hero__layout app-container">
     <div class="hero__copy">
       <p class="hero__eyebrow">{{ content().eyebrow }}</p>
       <h1 id="hero-title" class="hero__title" [attr.aria-label]="content().title">
@@ -36,7 +36,6 @@
     </div>
 
     <div
-      id="play"
       class="hero__card-shell"
       (mouseenter)="onPointerEnter()"
       (mouseleave)="onPointerLeave()"

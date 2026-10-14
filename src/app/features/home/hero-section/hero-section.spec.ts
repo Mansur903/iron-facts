@@ -129,6 +129,15 @@ describe('HeroSectionComponent', () => {
     expect(getCard(fixture).dataset['slideId']).toBe('question-2');
   });
 
+  it('anchors play links to the top of the hero layout', () => {
+    const fixture = createFixture();
+    const playTarget = fixture.nativeElement.querySelector('#play') as HTMLElement;
+    const cardShell = fixture.nativeElement.querySelector('.hero__card-shell') as HTMLElement;
+
+    expect(playTarget.classList).toContain('hero__layout');
+    expect(cardShell.id).toBe('');
+  });
+
   it('pauses while the document is hidden and resumes when it becomes visible', () => {
     const fixture = createFixture();
 

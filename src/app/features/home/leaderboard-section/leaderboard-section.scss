@@ -94,7 +94,7 @@
   }
 }
 
-@media (max-width: 63.999rem) {
+@media (width < 64rem) {
   .leaderboard {
     min-block-size: 0;
 
@@ -108,7 +108,7 @@
   }
 }
 
-@media (max-width: 37.499rem) {
+@media (width < 37.5rem) {
   .leaderboard {
     &::after {
       inline-size: 36%;

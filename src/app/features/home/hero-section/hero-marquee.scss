@@ -58,14 +58,14 @@
   }
 }
 
-@media (max-width: 63.999rem) {
+@media (width < 64rem) {
   .hero__action {
     inline-size: min(100%, 29rem);
     justify-self: center;
   }
 }
 
-@media (max-width: 37.499rem) {
+@media (width < 37.5rem) {
   .hero__action {
     margin-block-start: var(--space-2);
   }

@@ -134,7 +134,7 @@
 
 }
 
-@media (max-width: 63.999rem) {
+@media (width < 64rem) {
   .hero {
     min-block-size: 0;
 
@@ -183,7 +183,7 @@
   }
 }
 
-@media (max-width: 37.499rem) {
+@media (width < 37.5rem) {
   .hero {
     &::after {
       inline-size: 36%;

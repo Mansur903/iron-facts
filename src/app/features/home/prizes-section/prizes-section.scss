@@ -106,7 +106,7 @@
   }
 }
 
-@media (max-width: 63.999rem) {
+@media (width < 64rem) {
   .prizes {
     --prizes-sticky-top: 1rem;
     --prizes-reveal: 3.75rem;
@@ -130,7 +130,7 @@
   }
 }
 
-@media (max-width: 37.499rem) {
+@media (width < 37.5rem) {
   .prizes {
     --prizes-reveal: 3rem;
 
