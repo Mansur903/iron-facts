@@ -46,7 +46,7 @@ describe('PrizesSectionComponent', () => {
     }).compileComponents();
   });
 
-  it('renders runtime intro, rules and the play link', () => {
+  it('renders runtime intro, rules and a play link', () => {
     const fixture = TestBed.createComponent(PrizesSectionComponent);
     fixture.componentRef.setInput('content', content);
     fixture.detectChanges();
@@ -60,7 +60,7 @@ describe('PrizesSectionComponent', () => {
     expect(heading.textContent).toContain(content.titleAccent);
     expect(rules).toHaveLength(2);
     expect(rules[0]?.textContent).toContain('Первое правило');
-    expect(link.getAttribute('href')).toBe('#play');
+    expect(link.getAttribute('href')).toBe(content.playLink.href);
     expect(link.textContent).toContain(content.playLink.label);
   });
 

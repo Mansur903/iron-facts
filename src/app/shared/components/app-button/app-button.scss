@@ -10,7 +10,7 @@
   border: 0;
   padding: var(--space-3) var(--space-5);
   color: var(--color-text-on-brand);
-  background: var(--color-brand);
+  background: var(--button-background, var(--color-brand));
   clip-path: polygon(
     0 0,
     100% 0,
@@ -37,12 +37,12 @@
   }
 
   &:hover:not(:disabled, .app-button--disabled) {
-    background: var(--color-brand-hover);
+    background: var(--button-background-hover, var(--color-brand-hover));
     transform: translateY(-0.125rem);
   }
 
   &:active:not(:disabled, .app-button--disabled) {
-    background: var(--color-brand-active);
+    background: var(--button-background-active, var(--color-brand-active));
     transform: translateY(0.0625rem);
   }
 

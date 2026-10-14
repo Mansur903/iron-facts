@@ -133,6 +133,8 @@ export const leaderboardEntrySchema = v.object(
     name: nonEmptyStringSchema,
     score: nonNegativeIntegerSchema,
     avatar: v.optional(assetReferenceSchema),
+    podiumLabelDesktop: v.optional(nonEmptyStringSchema),
+    podiumLabelMobile: v.optional(nonEmptyStringSchema),
   },
   EXPECTED_OBJECT_MESSAGE,
 );
@@ -141,8 +143,10 @@ export const leaderboardContentSchema = v.object(
   {
     eyebrow: nonEmptyStringSchema,
     title: nonEmptyStringSchema,
+    titleAccent: v.optional(nonEmptyStringSchema),
     scoreLabel: nonEmptyStringSchema,
     resultsLink: contentLinkSchema,
+    backgroundImage: v.optional(assetReferenceSchema),
     entries: nonEmptyArray(leaderboardEntrySchema),
   },
   EXPECTED_OBJECT_MESSAGE,

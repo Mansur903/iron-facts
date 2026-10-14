@@ -1,0 +1,130 @@
+:host {
+  display: block;
+}
+
+.leaderboard {
+  position: relative;
+  overflow: hidden;
+  min-block-size: 102.5rem;
+  background: var(--color-leaderboard-background);
+
+  &__confetti {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 50%;
+    inline-size: min(100%, 90rem);
+    block-size: 100%;
+    max-inline-size: none;
+    object-fit: cover;
+    pointer-events: none;
+    transform: translateX(-50%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-inline-size: 75rem;
+    padding-block: 5rem 11.25rem;
+  }
+
+  &__header {
+    text-align: center;
+  }
+
+  &__eyebrow {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-family-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    line-height: var(--line-height-tight);
+    text-transform: uppercase;
+  }
+
+  &__title-accent {
+    color: var(--color-leaderboard-first);
+  }
+
+  &__podium,
+  &__rows {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__podium {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: end;
+    margin-block-start: 4rem;
+  }
+
+  &__rows {
+    margin-block-start: 2rem;
+  }
+
+  &__action {
+    --button-background: var(--color-leaderboard-first);
+
+    display: block;
+    inline-size: 18rem;
+    margin: 3.5rem auto 0;
+  }
+}
+
+@media (max-width: 63.999rem) {
+  .leaderboard {
+    min-block-size: 0;
+
+    &__content {
+      padding-block: 4rem 5rem;
+    }
+
+    &__podium {
+      margin-block-start: 5rem;
+    }
+  }
+}
+
+@media (max-width: 37.499rem) {
+  .leaderboard {
+    &__content {
+      inline-size: 100%;
+      padding-block: 3.75rem 4.25rem;
+    }
+
+    &__eyebrow {
+      margin-block-end: var(--space-3);
+      font-size: 0.6875rem;
+    }
+
+    &__title {
+      font-size: clamp(1.75rem, 7.5vw, 2rem);
+    }
+
+    &__podium {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr);
+      margin-block-start: 5rem;
+    }
+
+    &__rows {
+      margin-block-start: 0;
+    }
+
+    &__action {
+      --button-background: var(--color-brand);
+
+      inline-size: calc(100% - 2rem);
+      margin-block-start: 3rem;
+    }
+  }
+}

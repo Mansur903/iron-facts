@@ -142,7 +142,7 @@ describe('validateSiteContent', () => {
       error: {
         code: 'unsupported-version',
         path: '$.schemaVersion',
-        message: 'Unsupported schema version 2; expected 1.',
+        message: `Unsupported schema version ${SITE_CONTENT_SCHEMA_VERSION + 1}; expected ${SITE_CONTENT_SCHEMA_VERSION}.`,
       },
     });
   });

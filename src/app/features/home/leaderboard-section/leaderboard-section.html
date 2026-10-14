@@ -1,0 +1,93 @@
+<section id="leaderboard" class="leaderboard" aria-labelledby="leaderboard-title">
+  @if (content().backgroundImage; as image) {
+    <img
+      class="leaderboard__confetti"
+      [src]="image.src"
+      alt=""
+      [attr.width]="image.width ?? null"
+      [attr.height]="image.height ?? null"
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+    />
+  }
+
+  <div class="leaderboard__content app-container">
+    <header class="leaderboard__header">
+      <p class="leaderboard__eyebrow">{{ content().eyebrow }}</p>
+      <h2 id="leaderboard-title" class="leaderboard__title">
+        @if (content().titleAccent; as accent) {
+          <span class="leaderboard__title-accent">{{ accent }}</span>
+        }
+        {{ content().title }}
+      </h2>
+    </header>
+
+    <ul class="leaderboard__podium">
+      @for (entry of entries().podium; track entry.position) {
+        <li
+          class="leaderboard-card"
+          [class.leaderboard-card--first]="entry.position === 1"
+          [class.leaderboard-card--second]="entry.position === 2"
+          [class.leaderboard-card--third]="entry.position === 3"
+        >
+          <p class="leaderboard-card__place">
+            @if (entry.podiumLabelDesktop; as desktopLabel) {
+              <span class="leaderboard-card__place-desktop">/ {{ desktopLabel }}</span>
+            }
+            @if (entry.podiumLabelMobile; as mobileLabel) {
+              <span class="leaderboard-card__place-mobile">/ {{ mobileLabel }}</span>
+            }
+          </p>
+          <div class="leaderboard-card__player">
+            @if (entry.avatar; as avatar) {
+              <img
+                class="leaderboard-card__avatar"
+                [src]="avatar.src"
+                alt=""
+                [attr.width]="avatar.width ?? null"
+                [attr.height]="avatar.height ?? null"
+                loading="lazy"
+                decoding="async"
+              />
+            }
+            <h3 class="leaderboard-card__name">{{ entry.name }}</h3>
+            <p class="leaderboard-card__score">
+              {{ formatPodiumScore(entry.score) }} {{ content().scoreLabel }}
+            </p>
+          </div>
+        </li>
+      }
+    </ul>
+
+    <ul class="leaderboard__rows">
+      @for (entry of entries().rows; track entry.position) {
+        <li class="leaderboard-row">
+          <span class="leaderboard-row__position">{{ entry.position }}</span>
+          @if (entry.avatar; as avatar) {
+            <img
+              class="leaderboard-row__avatar"
+              [src]="avatar.src"
+              alt=""
+              [attr.width]="avatar.width ?? null"
+              [attr.height]="avatar.height ?? null"
+              loading="lazy"
+              decoding="async"
+            />
+          }
+          <span class="leaderboard-row__name">{{ entry.name }}</span>
+          <span class="leaderboard-row__score">{{ entry.score }} {{ content().scoreLabel }}</span>
+        </li>
+      }
+    </ul>
+
+    <app-button
+      class="leaderboard__action"
+      size="large"
+      [stretch]="true"
+      [label]="content().resultsLink.label"
+      [href]="content().resultsLink.href"
+      [external]="content().resultsLink.external ?? false"
+    />
+  </div>
+</section>

@@ -174,6 +174,14 @@ Asset references остаются необязательными до появл
 | Иллюстрация зданий для промокода | `1:1588` и `1:271` — source frames; ID внутреннего слоя не предоставлен | `public/assets/prizes/experience-buildings.svg` | SVG | Desktop и mobile |
 | Иллюстрация подарка для сертификата | `1:1588` и `1:271` — source frames; ID внутреннего слоя не предоставлен | `public/assets/prizes/knowledge-gift.svg` | SVG | Desktop и mobile |
 | Красный пейзаж с поездом для главного приза | `1:2104` — source frame финального состояния; ID внутреннего слоя не предоставлен | `public/assets/prizes/travel-train.png` | PNG | Desktop и mobile |
+| Декоративное конфетти рейтинга | `1:1588` и `1:271` — source frames; ID слоя не предоставлен | `public/assets/leaderboard/confetti.svg` | SVG | Desktop и mobile |
+| Аватар Михаила Нагорова | `1:1588` и `1:271` — source frames; ID слоя не предоставлен | `public/assets/leaderboard/mikhail-nagorov.png` | PNG | Desktop и mobile |
+| Аватар Светланы Куликовой | `1:1588` и `1:271` — source frames; ID слоя не предоставлен | `public/assets/leaderboard/svetlana-kulikova.png` | PNG | Desktop и mobile |
+| Аватар-заглушка Елены, Марка, Ольги и Елизаветы | `1:1588` и `1:271` — source frames; ID слоя не предоставлен | `public/assets/leaderboard/avatar-placeholder.png` | PNG | Desktop и mobile |
+| Аватар Кирилла Хусманова | `1:1588` и `1:271` — source frames; ID слоя не предоставлен | `public/assets/leaderboard/kirill-khusmanov.png` | PNG | Desktop и mobile |
+| Аватар Сергея Литвинова | `1:1588` и `1:271` — source frames; ID слоя не предоставлен | `public/assets/leaderboard/sergey-litvinov.png` | PNG | Desktop и mobile |
+| Аватар Дарьи Андреевой | `1:1588` и `1:271` — source frames; ID слоя не предоставлен | `public/assets/leaderboard/darya-andreeva.png` | PNG | Desktop и mobile |
+| Аватар Натальи Весны | `1:1588` и `1:271` — source frames; ID слоя не предоставлен | `public/assets/leaderboard/natalya-vesna.png` | PNG | Desktop и mobile |
 
 Для секции призов необязательное поле `titleAccent` в runtime JSON задаёт выделенную строку
 заголовка отдельно от основного текста. Поле добавлено без изменения `schemaVersion`: прежний
@@ -475,3 +483,37 @@ accessibility- и lifecycle-поведение. Неактивные карто�
 отклонены: обе альтернативы требуют дополнительной синхронизации с timer и cleanup, тогда как
 перестановка CSS-классов использует уже существующий signal активного индекса и автоматически
 отключается глобальным `prefers-reduced-motion` правилом.
+
+---
+
+## ADR-006 — Leaderboard section and CTA links
+
+**Status:** Accepted
+
+**Date:** 2026-10-14.
+
+### Context and decision
+
+Пользователь предоставил отдельные desktop/mobile screenshots рейтинга, SVG конфетти и исходные
+PNG аватаров. Figma MCP по-прежнему возвращает лимит Starter plan. Имена, места, баллы, подписи и
+цвета сверены с переданными экспортами; в частности, десятое место имеет 6000 баллов. Podium
+показывает места в визуальном порядке 2–1–3, остальные строки сортируются по позиции. Карточки
+podium и строки остаются внутренней разметкой одного standalone-компонента.
+
+По последующей корректировке пользователя «Все результаты» и «Играть сейчас» снова выводятся
+нативными ссылками через `AppButtonComponent`. В runtime JSON используются прежние `resultsLink`
+и `playLink` с `href` `#results` и `#play`. Целевые разделы пока не реализованы, поэтому ссылки
+сохраняют структуру и семантику навигации, но не открывают отдельную страницу. Добавленные для
+рейтинга поля необязательны; `schemaVersion` остаётся 1. Подписи призовых мест для desktop и
+mobile хранятся в JSON отдельно, аватары и конфетти ссылаются на локальные `assets/...` пути.
+
+### Alternatives and limitations
+
+- Использовать `button type="button"` и только текстовые подписи без `href`: сначала принято по
+  уточнению пользователя, затем отменено его последующим решением вернуть ссылки, как раньше.
+- Выделить карточки и строки в отдельные Angular-компоненты: отложено до самостоятельной логики
+  или повторного использования.
+- Дублировать PNG заглушки для каждого участника: отклонено; один файл используется повторно.
+- Экспортировать целые карточки изображениями: отклонено, поскольку текст и доступность должны
+  оставаться нативными. Диагональный полосатый декор воспроизведён стилями; точный внутренний
+  Figma-слой недоступен и исходный отдельный ассет не предоставлен.
