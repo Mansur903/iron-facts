@@ -20,6 +20,10 @@
   --color-mechanics-first: #ff575b;
   --color-mechanics-second: #e83d3d;
   --color-mechanics-marker-muted: #b1b1b1;
+  --color-final-cta-background: #f5f5f5;
+  --color-final-cta-mobile-title: #4b4b4b;
+  --color-final-cta-red: #e21a1a;
+  --color-text-on-final-cta: #000000;
   --color-surface-tint: #ffd0d2;
   --color-marquee: #333333;
   --color-card-stripe: #dfe5f8;
@@ -83,7 +87,6 @@
 }
 
 html {
-  min-inline-size: 20rem;
   background: var(--color-surface);
 }
 

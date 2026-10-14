@@ -1,0 +1,49 @@
+<section class="final-cta" aria-labelledby="final-cta-title">
+  <div class="final-cta__stage">
+    <div class="final-cta__background" aria-hidden="true">
+      <img
+        class="final-cta__stripes"
+        src="assets/final-cta/diagonal-stripes.svg"
+        alt=""
+        width="1271"
+        height="640"
+      />
+    </div>
+
+    <div class="final-cta__content app-container">
+      <h2 id="final-cta-title" class="final-cta__title">
+        @if (content().titleParts; as parts) {
+          <span class="final-cta__title-lead">{{ parts.lead }}</span>
+          <span class="final-cta__ticket">
+            <img src="assets/final-cta/rzd-ticket.svg" alt="" width="164" height="70" aria-hidden="true" />
+            <span>{{ parts.accent }}</span>
+          </span>
+          <span class="final-cta__title-tail">{{ parts.tail }}</span>
+        } @else {
+          {{ content().title }}
+        }
+      </h2>
+      <p class="final-cta__description">{{ content().description }}</p>
+      <app-button
+        class="final-cta__action"
+        size="large"
+        [stretch]="true"
+        [label]="content().playLink.label"
+        [href]="content().playLink.href"
+        [external]="content().playLink.external ?? false"
+      />
+    </div>
+
+    @if (content().image; as image) {
+      <img
+        class="final-cta__portrait"
+        [src]="image.src"
+        [alt]="image.alt"
+        [attr.width]="image.width ?? null"
+        [attr.height]="image.height ?? null"
+        loading="lazy"
+        decoding="async"
+      />
+    }
+  </div>
+</section>

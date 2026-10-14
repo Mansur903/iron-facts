@@ -1,0 +1,191 @@
+:host {
+  display: block;
+}
+
+.final-cta {
+  position: relative;
+  z-index: 1;
+  background: var(--color-final-cta-background);
+
+  &__stage {
+    position: relative;
+    max-inline-size: 90rem;
+    block-size: 40rem;
+    margin-inline: auto;
+  }
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  &__stripes {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    max-inline-size: none;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    padding-block-start: 8.25rem;
+  }
+
+  &__title {
+    max-inline-size: 33rem;
+    margin: 0;
+    color: var(--color-text-on-final-cta);
+    font-family: var(--font-family-hero);
+    font-size: clamp(2.7rem, 3.7vw, 3.25rem);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    text-transform: uppercase;
+  }
+
+  &__title-lead {
+    white-space: nowrap;
+  }
+
+  &__ticket {
+    position: relative;
+    display: inline-flex;
+    inline-size: 10.25rem;
+    block-size: 4.375rem;
+    align-items: center;
+    justify-content: center;
+    margin-inline-start: -0.125rem;
+    color: var(--color-text-on-brand);
+    vertical-align: middle;
+
+    img {
+      position: absolute;
+      inset: 0;
+      max-inline-size: none;
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+      padding-block-end: 0.3rem;
+    }
+  }
+
+  &__title-tail {
+    display: block;
+    max-inline-size: 30rem;
+  }
+
+  &__description {
+    max-inline-size: 26rem;
+    margin: 1.5rem 0 2.5rem;
+    color: var(--color-text-on-final-cta);
+    font-size: var(--font-size-lg);
+    line-height: 1.25;
+  }
+
+  &__action {
+    inline-size: 17.75rem;
+    --button-background: var(--color-final-cta-red);
+    --button-background-hover: var(--color-brand-hover);
+    --button-background-active: var(--color-brand-active);
+  }
+
+  &__portrait {
+    position: absolute;
+    z-index: 1;
+    inset-block-start: -6.125rem;
+    inset-inline-end: 0;
+    max-inline-size: none;
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .final-cta__stripes {
+    inset-inline-end: -18rem;
+  }
+}
+
+@media (max-width: 899px) {
+  .final-cta {
+    overflow: hidden;
+
+    &__stage {
+      block-size: 43.875rem;
+    }
+
+    &__stripes {
+      inset-inline-end: -19.6875rem;
+      inset-block-end: -0.9375rem;
+      transform: scale(0.65);
+      transform-origin: right bottom;
+    }
+
+    &__content {
+      padding-block-start: 1.75rem;
+    }
+
+    &__title {
+      max-inline-size: 24rem;
+      color: var(--color-final-cta-mobile-title);
+      font-size: clamp(2.5rem, 9vw, 2.75rem);
+      letter-spacing: -0.04em;
+    }
+
+    &__title-lead,
+    &__ticket {
+      display: block;
+    }
+
+    &__ticket {
+      inline-size: 8.875rem;
+      block-size: 3.8125rem;
+      margin-inline-start: calc(-1 * var(--container-gutter));
+
+      img {
+        transform: scale(0.866);
+        transform-origin: left top;
+      }
+
+      span {
+        display: block;
+        padding: 0.25rem 0 0 1rem;
+      }
+    }
+
+    &__title-tail {
+      max-inline-size: 22rem;
+      font-size: 2.5rem;
+      letter-spacing: -0.08em;
+    }
+
+    &__description {
+      max-inline-size: 22rem;
+      margin-block: 1rem 0;
+      font-size: 1.125rem;
+      line-height: 1.35;
+    }
+
+    &__action {
+      display: none;
+    }
+
+    &__portrait {
+      inset-block-start: 17.0625rem;
+      inset-inline-end: -7.8125rem;
+      inline-size: 28.125rem;
+      block-size: auto;
+    }
+  }
+}
+
+@media (max-width: 359px) {
+  .final-cta__title-tail {
+    font-size: 2rem;
+    letter-spacing: -0.08em;
+  }
+}

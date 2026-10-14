@@ -175,6 +175,13 @@ export const mechanicsContentSchema = v.object(
 export const finalCtaContentSchema = v.object(
   {
     title: nonEmptyStringSchema,
+    titleParts: v.optional(
+      v.object({
+        lead: nonEmptyStringSchema,
+        accent: nonEmptyStringSchema,
+        tail: nonEmptyStringSchema,
+      }),
+    ),
     description: nonEmptyStringSchema,
     playLink: contentLinkSchema,
     image: v.optional(assetReferenceSchema),
