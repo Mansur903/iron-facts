@@ -8,6 +8,7 @@ import { SiteContentService } from '../../core/content/site-content.service';
 import { validateSiteContent } from '../../core/content/site-content.validator';
 import { SiteHeaderComponent } from '../../layout/site-header/site-header';
 import siteContent from '../../../../public/config/site-content.json';
+import { HeroSectionComponent } from './hero-section/hero-section';
 import { HomePageComponent } from './home-page';
 
 describe('HomePageComponent', () => {
@@ -65,8 +66,11 @@ describe('HomePageComponent', () => {
 
     const header = fixture.debugElement.query(By.directive(SiteHeaderComponent))
       .componentInstance as SiteHeaderComponent;
+    const hero = fixture.debugElement.query(By.directive(HeroSectionComponent))
+      .componentInstance as HeroSectionComponent;
 
     expect(header.navigation()).toEqual(validationResult.value.navigation);
+    expect(hero.content()).toEqual(validationResult.value.hero);
     expect(fixture.nativeElement.textContent).not.toContain(
       'Содержимое страницы загружено',
     );

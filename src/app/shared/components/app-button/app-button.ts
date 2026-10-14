@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-
-export type AppButtonAppearance = 'brand' | 'light';
-export type AppButtonSize = 'compact' | 'regular';
+import type { AppButtonAppearance, AppButtonSize } from './app-button.types';
 
 @Component({
   selector: 'app-button',

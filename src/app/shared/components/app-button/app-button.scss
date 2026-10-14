@@ -69,9 +69,14 @@
   }
 
   &--compact {
-    min-block-size: 2.5rem;
-    padding: var(--space-2) var(--space-5);
-    font-size: var(--font-size-xs);
+    min-inline-size: 8.25rem;
+    min-block-size: 3rem;
+    padding: var(--space-3) 2.5rem;
+    font-size: var(--font-size-md);
+  }
+
+  &--large {
+    min-block-size: 3.5rem;
   }
 
   &--stretch {

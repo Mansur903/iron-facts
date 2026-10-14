@@ -164,11 +164,11 @@
     }
 
     &__brand {
-      min-inline-size: 8.5rem;
+      min-inline-size: 11.5625rem;
     }
 
     &__logo {
-      block-size: 1.75rem;
+      block-size: 2.5625rem;
     }
 
     &__desktop-nav {
@@ -183,7 +183,7 @@
       position: relative;
       padding-block: var(--space-2);
       font-family: var(--font-family-display);
-      font-size: var(--font-size-xs);
+      font-size: var(--font-size-md);
       font-weight: 700;
       text-decoration: none;
       text-transform: uppercase;

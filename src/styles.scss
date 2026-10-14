@@ -1,22 +1,27 @@
 :root {
   color-scheme: light;
 
-  --color-brand: #e21a22;
-  --color-brand-hover: #c81018;
-  --color-brand-active: #a70d14;
+  --color-brand: #f60000;
+  --color-brand-hover: #dc0000;
+  --color-brand-active: #c40000;
   --color-text: #1f1f1f;
   --color-text-muted: #666666;
   --color-text-on-brand: #ffffff;
   --color-surface: #ffffff;
   --color-surface-subtle: #f4f4f4;
+  --color-surface-tint: #ffd0d2;
+  --color-marquee: #333333;
+  --color-card-stripe: #dfe5f8;
   --color-border: #d9d9d9;
   --color-focus: #005fcc;
+  --color-danger: #e13b2b;
   --color-backdrop: rgb(0 0 0 / 45%);
   --color-disabled-background: #d8d8d8;
   --color-disabled-text: #777777;
 
   --font-family-body: Arial, "Helvetica Neue", sans-serif;
-  --font-family-display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-family-display: "Bahnschrift Condensed", "Arial Narrow", "Helvetica Neue Condensed", Arial,
+    sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
@@ -37,8 +42,13 @@
   --space-9: 3.5rem;
   --space-10: 4rem;
 
-  --container-page: 90rem;
+  --container-page: 80rem;
+  --container-content: 80rem;
   --container-gutter: clamp(1rem, 3vw, 2.5rem);
+  --container-inline-offset: max(
+    var(--container-gutter),
+    calc((100vw - var(--container-page)) / 2)
+  );
   --header-height-mobile: 3.5rem;
   --header-height-desktop: 4rem;
   --button-cut: 0.5rem;
@@ -50,6 +60,7 @@
 
   --duration-fast: 120ms;
   --duration-normal: 220ms;
+  --duration-marquee: 14s;
   --easing-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
@@ -97,9 +108,8 @@ svg {
 }
 
 .app-container {
-  inline-size: min(100%, var(--container-page));
+  inline-size: min(calc(100% - (var(--container-gutter) * 2)), var(--container-page));
   margin-inline: auto;
-  padding-inline: var(--container-gutter);
 }
 
 @media (prefers-reduced-motion: no-preference) {

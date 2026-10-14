@@ -1,0 +1,117 @@
+<section
+  id="about"
+  class="hero"
+  aria-labelledby="hero-title"
+>
+  <div class="hero__rails" aria-hidden="true">
+    <img
+      class="hero__rails-image"
+      src="assets/hero/rail-pattern.png"
+      alt=""
+      width="960"
+      height="750"
+    />
+  </div>
+
+  <div class="hero__layout app-container">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">{{ content().eyebrow }}</p>
+      <h1 id="hero-title" class="hero__title" [attr.aria-label]="content().title">
+        <span aria-hidden="true">{{ titlePrimary() }}</span>
+        @if (titleAccent()) {
+          <span class="hero__title-accent" aria-hidden="true">
+            <img
+              class="hero__title-accent-background"
+              src="assets/hero/title-facts-background.png"
+              alt=""
+              width="611"
+              height="141"
+              aria-hidden="true"
+            />
+            {{ titleAccent() }}
+          </span>
+        }
+      </h1>
+      <p class="hero__description">{{ content().description }}</p>
+    </div>
+
+    <div
+      id="play"
+      class="hero__card-shell"
+      (mouseenter)="onPointerEnter()"
+      (mouseleave)="onPointerLeave()"
+      (focusin)="onFocusIn()"
+      (focusout)="onFocusOut($event)"
+    >
+      @for (item of queuedSlides(); track item.slide.id) {
+        <article
+          class="hero-card"
+          [class.hero-card--active]="item.position === 0"
+          [class.hero-card--next]="item.position === 1"
+          [class.hero-card--waiting]="item.position > 1"
+          [attr.aria-label]="item.position === 0 ? item.slide.eyebrow : null"
+          [attr.aria-hidden]="item.position === 0 ? null : 'true'"
+          [attr.data-slide-id]="item.slide.id"
+        >
+          <span class="hero-card__eyebrow">{{ item.slide.eyebrow }}</span>
+          <p class="hero-card__statement">{{ item.slide.statement }}</p>
+
+          <div class="hero-card__answers" aria-label="Варианты ответа">
+            <button class="hero-card__answer" type="button" [disabled]="item.position !== 0">
+              <img
+                class="hero-card__answer-icon hero-card__answer-icon--yes"
+                src="assets/hero/answer-check.svg"
+                alt=""
+                width="18"
+                height="13"
+                aria-hidden="true"
+              />
+              {{ item.slide.yesLabel }}
+            </button>
+            <button class="hero-card__answer" type="button" [disabled]="item.position !== 0">
+              <span
+                class="hero-card__answer-icon hero-card__answer-icon--no"
+                aria-hidden="true"
+              ></span>
+              {{ item.slide.noLabel }}
+            </button>
+          </div>
+
+          @if (item.slide.image; as image) {
+            <img
+              class="hero-card__image"
+              [src]="image.src"
+              [alt]="image.alt"
+              [attr.width]="image.width ?? null"
+              [attr.height]="image.height ?? null"
+            />
+          }
+        </article>
+      }
+    </div>
+
+    <div class="hero__action">
+      <div class="hero__marquee">
+        <div class="hero__marquee-track">
+          <span class="hero__marquee-group">
+            <span>{{ content().marqueeText }}</span>
+            <span aria-hidden="true">•</span>
+          </span>
+          <span class="hero__marquee-group" aria-hidden="true">
+            <span>{{ content().marqueeText }}</span>
+            <span>•</span>
+          </span>
+        </div>
+      </div>
+
+      <app-button
+        appearance="light"
+        size="large"
+        [stretch]="true"
+        [label]="content().playLink.label"
+        [href]="content().playLink.href"
+        [external]="content().playLink.external ?? false"
+      />
+    </div>
+  </div>
+</section>

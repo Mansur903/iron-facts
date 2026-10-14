@@ -40,14 +40,46 @@
       "label": "Начать игру",
       "href": "#play"
     },
-    "rotationIntervalMs": 7000,
+    "rotationIntervalMs": 5000,
     "slides": [
       {
         "id": "track-safety",
         "eyebrow": "Вопрос 1",
-        "statement": "Правда ли, что специалист отвечает за безопасность железнодорожников на пути?",
+        "statement": "Правда ли, что сигналист отвечает за безопасность железнодорожников на путях?",
         "yesLabel": "Да",
-        "noLabel": "Нет"
+        "noLabel": "Нет",
+        "image": {
+          "src": "assets/hero/question-1-worker.png",
+          "alt": "Сигналист в рабочей форме",
+          "width": 202,
+          "height": 252
+        }
+      },
+      {
+        "id": "station-routes",
+        "eyebrow": "Вопрос 2",
+        "statement": "Входит ли в обязанности дежурного по станции управление маршрутами?",
+        "yesLabel": "Да",
+        "noLabel": "Нет",
+        "image": {
+          "src": "assets/hero/question-2-station-duty.png",
+          "alt": "Дежурная по станции в форменной одежде",
+          "width": 202,
+          "height": 250
+        }
+      },
+      {
+        "id": "station-traffic",
+        "eyebrow": "Вопрос 3",
+        "statement": "Правда ли, что дежурный по вокзалу руководит движением поездов и управляет светофорами на станциях?",
+        "yesLabel": "Да",
+        "noLabel": "Нет",
+        "image": {
+          "src": "assets/hero/question-3-hall-duty.png",
+          "alt": "Дежурная по залу вокзала в форменной одежде",
+          "width": 175,
+          "height": 252
+        }
       }
     ]
   },
