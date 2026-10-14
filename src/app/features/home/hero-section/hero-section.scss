@@ -9,6 +9,19 @@
   color: var(--color-text-on-brand);
   background: var(--color-brand);
 
+  &::after {
+    position: absolute;
+    z-index: 3;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    inline-size: 30%;
+    block-size: 2.5rem;
+    background: var(--color-surface);
+    clip-path: polygon(1.875rem 0, 100% 0, 100% 100%, 0 100%);
+    content: '';
+    pointer-events: none;
+  }
+
   &__rails {
     position: absolute;
     inset-block-start: 0;
@@ -36,6 +49,8 @@
 
   &__copy {
     align-self: center;
+    min-inline-size: 0;
+    transform: translateY(-1.875rem);
   }
 
   &__eyebrow {
@@ -53,9 +68,9 @@
     flex-direction: column;
     align-items: flex-start;
     margin: 0;
-    font-family: var(--font-family-display);
-    font-size: clamp(4.25rem, 6.7vw, 6.25rem);
-    font-weight: 800;
+    font-family: var(--font-family-hero);
+    font-size: clamp(4.25rem, 7.5vw, 6.875rem);
+    font-weight: 900;
     letter-spacing: -0.045em;
     line-height: 0.9;
     text-transform: uppercase;
@@ -65,7 +80,7 @@
     position: relative;
     z-index: 0;
     display: flex;
-    inline-size: min(38.1875rem, 100vw);
+    inline-size: min(38.1875rem, calc(100vw - 3rem));
     align-items: center;
     margin-block-start: var(--space-2);
     margin-inline-start: calc(var(--container-inline-offset) * -1);
@@ -79,7 +94,8 @@
     inset-block-start: 50%;
     inset-inline: 0;
     inline-size: 100%;
-    block-size: clamp(5.4rem, 23.08vw, 8.8125rem);
+    aspect-ratio: 611 / 141;
+    block-size: auto;
     object-fit: fill;
     transform: translateY(-50%);
   }
@@ -99,54 +115,23 @@
     inline-size: min(100%, 29rem);
     block-size: 16.5rem;
     justify-self: end;
+    min-inline-size: 0;
+    transform: translateY(-0.625rem);
   }
 
-  &__action {
-    position: relative;
-    z-index: 2;
-    inline-size: min(100%, 17.75rem);
-
-    app-button {
-      display: block;
-      inline-size: 100%;
-    }
-  }
-
-  &__marquee {
-    overflow: hidden;
-    color: var(--color-text-on-brand);
-    background: var(--color-marquee);
-    font-family: var(--font-family-display);
-    font-size: var(--font-size-xs);
-    font-weight: 700;
-    line-height: 2.25rem;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  &__marquee-track {
-    display: flex;
-    inline-size: max-content;
-    animation: hero-marquee var(--duration-marquee) linear infinite;
-  }
-
-  &__marquee-group {
-    display: inline-flex;
-    gap: var(--space-3);
-    padding-inline-end: var(--space-3);
-  }
 }
 
 @media (min-width: 90rem) {
   .hero__title-accent {
     inline-size: calc(var(--container-inline-offset) + 33.1875rem);
   }
-}
 
-@keyframes hero-marquee {
-  to {
-    transform: translateX(-50%);
+  .hero__title-accent-background {
+    inset-inline-start: max(0rem, calc(var(--container-inline-offset) - 5rem));
+    inset-inline-end: auto;
+    inline-size: 38.1875rem;
   }
+
 }
 
 @media (max-width: 63.999rem) {
@@ -154,14 +139,14 @@
     min-block-size: 0;
 
     &__rails {
-      inset-inline-end: -8rem;
-      inline-size: 80%;
-      opacity: 0.65;
+      inset-inline-start: -1.5rem;
+      inset-inline-end: auto;
+      inline-size: 60rem;
     }
 
     &__layout {
       min-block-size: 0;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto;
       gap: var(--space-6);
       padding-block: var(--space-8);
@@ -176,11 +161,12 @@
 
     &__copy {
       align-self: auto;
+      transform: none;
     }
 
     &__title {
       max-inline-size: 42rem;
-      font-size: clamp(3rem, 11.5vw, 5rem);
+      font-size: clamp(3rem, 10vw, 5rem);
     }
 
     &__description {
@@ -191,20 +177,23 @@
       inline-size: min(100%, 29rem);
       justify-self: center;
       margin-block-start: var(--space-4);
+      transform: none;
     }
 
-    &__action {
-      inline-size: min(100%, 29rem);
-      justify-self: center;
-    }
   }
 }
 
 @media (max-width: 37.499rem) {
   .hero {
+    &::after {
+      inline-size: 36%;
+      block-size: 2rem;
+      clip-path: polygon(1.5rem 0, 100% 0, 100% 100%, 0 100%);
+    }
+
     &__layout {
       gap: var(--space-5);
-      padding-block: var(--space-6) var(--space-8);
+      padding-block: var(--space-8) 5rem;
     }
 
     &__eyebrow {
@@ -213,10 +202,15 @@
     }
 
     &__title {
-      font-size: clamp(2.75rem, 14vw, 3.5rem);
+      font-size: clamp(2.75rem, 13.875vw, 3.75rem);
+
+      > span:first-child {
+        margin-inline-start: 0.4375rem;
+      }
     }
 
     &__title-accent {
+      padding-inline-start: clamp(4.25rem, 21vw, 5rem);
       padding-inline-end: 0.5em;
     }
 
@@ -227,17 +221,8 @@
     &__card-shell {
       inline-size: min(100%, 20.9375rem);
       block-size: 15.375rem;
-      margin-block-start: var(--space-5);
+      margin-block-start: 1.875rem;
     }
-  }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__marquee-track {
-    animation: none;
-  }
-
-  .hero__marquee-group[aria-hidden='true'] {
-    display: none;
   }
 }

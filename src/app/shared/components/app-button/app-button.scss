@@ -19,7 +19,7 @@
     0 100%
   );
   cursor: pointer;
-  font-family: var(--font-family-display);
+  font-family: var(--button-font-family, var(--font-family-display));
   font-size: var(--font-size-lg);
   font-weight: 700;
   line-height: 1;

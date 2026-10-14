@@ -174,6 +174,9 @@ describe('HeroSectionComponent', () => {
     expect(groups[1]?.getAttribute('aria-hidden')).toBe('true');
     expect(groups[0]?.textContent).toContain(content.marqueeText);
     expect(groups[1]?.textContent).toContain(content.marqueeText);
+    expect(groups[0]?.querySelectorAll('span')).toHaveLength(3);
+    expect(groups[0]?.querySelectorAll('span[aria-hidden="true"]')).toHaveLength(2);
+    expect(groups[1]?.querySelectorAll('span')).toHaveLength(3);
   });
 
   function createFixture(): ComponentFixture<HeroSectionComponent> {

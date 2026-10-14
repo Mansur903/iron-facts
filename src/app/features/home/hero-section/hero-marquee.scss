@@ -1,0 +1,87 @@
+.hero {
+  &__action {
+    position: relative;
+    z-index: 2;
+    inline-size: min(100%, 17.75rem);
+    min-inline-size: 0;
+    --button-font-family: var(--font-family-hero);
+
+    app-button {
+      display: block;
+      inline-size: 100%;
+    }
+  }
+
+  &__marquee {
+    overflow: hidden;
+    color: var(--color-text-on-brand);
+    background: var(--color-marquee);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    line-height: 2.25rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  &__marquee-track {
+    display: flex;
+    inline-size: max-content;
+    animation: hero-marquee var(--duration-marquee) linear infinite;
+  }
+
+  &__marquee-group {
+    display: inline-flex;
+    flex: none;
+
+    > span {
+      display: inline-flex;
+      flex: none;
+      align-items: center;
+      padding-inline: var(--space-3);
+
+      &::after {
+        inline-size: 0.25rem;
+        block-size: 0.25rem;
+        margin-inline-start: var(--space-3);
+        border-radius: 50%;
+        background: currentColor;
+        content: '';
+      }
+    }
+  }
+}
+
+@keyframes hero-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 63.999rem) {
+  .hero__action {
+    inline-size: min(100%, 29rem);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 37.499rem) {
+  .hero__action {
+    margin-block-start: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__marquee-track {
+    animation: none;
+  }
+
+  .hero__marquee-group:first-child > span[aria-hidden='true'],
+  .hero__marquee-group[aria-hidden='true'] {
+    display: none;
+  }
+
+  .hero__marquee-group:first-child > span::after {
+    content: none;
+  }
+}

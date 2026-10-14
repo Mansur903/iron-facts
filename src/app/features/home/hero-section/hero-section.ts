@@ -18,7 +18,7 @@ import type { HeroPauseReason, HeroQueuedSlide } from './hero-section.types';
   selector: 'app-hero-section',
   imports: [AppButtonComponent],
   templateUrl: './hero-section.html',
-  styleUrls: ['./hero-section.scss', './hero-card.scss'],
+  styleUrls: ['./hero-section.scss', './hero-card.scss', './hero-marquee.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroSectionComponent implements OnInit, OnDestroy {
