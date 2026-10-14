@@ -1,0 +1,43 @@
+<section id="mechanics" class="mechanics" aria-labelledby="mechanics-title">
+  <div class="mechanics__content app-container">
+    <header class="mechanics__header">
+      <p class="mechanics__eyebrow">{{ content().eyebrow }}</p>
+      <h2 id="mechanics-title" class="mechanics__title">
+        {{ content().title }}
+        @if (content().titleAccent; as accent) {
+          <span class="mechanics__title-accent">{{ accent }}</span>
+        }
+      </h2>
+    </header>
+
+    <ol class="mechanics__stats">
+      @if (content().timelineImage; as image) {
+        <img
+          class="mechanics__timeline-image"
+          [src]="image.src"
+          alt=""
+          [attr.width]="image.width ?? null"
+          [attr.height]="image.height ?? null"
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
+      }
+
+      @for (item of content().stats; track $index) {
+        <li
+          #statElement
+          class="mechanics__stat"
+          [class.mechanics__stat--active]="$index === activeStatIndex()"
+        >
+          <span class="mechanics__marker" aria-hidden="true"></span>
+          <span class="mechanics__value">{{ item.value }}</span>
+          <div class="mechanics__copy">
+            <h3 class="mechanics__label">{{ item.label }}</h3>
+            <p class="mechanics__description">{{ item.description }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

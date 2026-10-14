@@ -228,22 +228,24 @@
   },
   "mechanics": {
     "eyebrow": "Механика игры",
-    "title": "РЖД больше, чем кажется",
+    "title": "РЖД больше,",
+    "titleAccent": "чем кажется",
+    "timelineImage": { "src": "assets/mechanics/timeline.svg", "alt": "", "width": 34, "height": 714 },
     "stats": [
       {
         "value": 10,
         "label": "раундов",
-        "description": "Первый подарок уже после первого раунда."
+        "description": "Первый подарок уже после первого раунда"
       },
       {
         "value": 10,
         "label": "вопросов",
-        "description": "Содержатся в каждом раунде."
+        "description": "Содержатся в каждом раунде"
       },
       {
         "value": 100,
         "label": "фактов",
-        "description": "О людях, профессиях и технологиях РЖД."
+        "description": "О людях, профессиях и технологиях РЖД"
       }
     ]
   },

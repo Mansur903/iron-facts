@@ -8,6 +8,19 @@
   min-block-size: 102.5rem;
   background: var(--color-leaderboard-background);
 
+  &::after {
+    position: absolute;
+    z-index: 2;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    inline-size: 30%;
+    block-size: 2.5rem;
+    background: var(--color-surface);
+    clip-path: polygon(1.875rem 0, 100% 0, 100% 100%, 0 100%);
+    content: '';
+    pointer-events: none;
+  }
+
   &__confetti {
     position: absolute;
     inset-block: 0;
@@ -97,6 +110,12 @@
 
 @media (max-width: 37.499rem) {
   .leaderboard {
+    &::after {
+      inline-size: 36%;
+      block-size: 2rem;
+      clip-path: polygon(1.5rem 0, 100% 0, 100% 100%, 0 100%);
+    }
+
     &__content {
       inline-size: 100%;
       padding-block: 3.75rem 4.25rem;

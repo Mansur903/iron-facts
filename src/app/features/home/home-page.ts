@@ -4,6 +4,7 @@ import { SiteContentService } from '../../core/content/site-content.service';
 import { SiteHeaderComponent } from '../../layout/site-header/site-header';
 import { HeroSectionComponent } from './hero-section/hero-section';
 import { LeaderboardSectionComponent } from './leaderboard-section/leaderboard-section';
+import { MechanicsSectionComponent } from './mechanics-section/mechanics-section';
 import { PrizesSectionComponent } from './prizes-section/prizes-section';
 
 @Component({
@@ -11,6 +12,7 @@ import { PrizesSectionComponent } from './prizes-section/prizes-section';
   imports: [
     HeroSectionComponent,
     LeaderboardSectionComponent,
+    MechanicsSectionComponent,
     PrizesSectionComponent,
     SiteHeaderComponent,
   ],

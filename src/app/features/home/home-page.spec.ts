@@ -10,6 +10,7 @@ import { SiteHeaderComponent } from '../../layout/site-header/site-header';
 import siteContent from '../../../../public/config/site-content.json';
 import { HeroSectionComponent } from './hero-section/hero-section';
 import { LeaderboardSectionComponent } from './leaderboard-section/leaderboard-section';
+import { MechanicsSectionComponent } from './mechanics-section/mechanics-section';
 import { HomePageComponent } from './home-page';
 import { PrizesSectionComponent } from './prizes-section/prizes-section';
 
@@ -74,11 +75,14 @@ describe('HomePageComponent', () => {
       .componentInstance as PrizesSectionComponent;
     const leaderboard = fixture.debugElement.query(By.directive(LeaderboardSectionComponent))
       .componentInstance as LeaderboardSectionComponent;
+    const mechanics = fixture.debugElement.query(By.directive(MechanicsSectionComponent))
+      .componentInstance as MechanicsSectionComponent;
 
     expect(header.navigation()).toEqual(validationResult.value.navigation);
     expect(hero.content()).toEqual(validationResult.value.hero);
     expect(prizes.content()).toEqual(validationResult.value.prizes);
     expect(leaderboard.content()).toEqual(validationResult.value.leaderboard);
+    expect(mechanics.content()).toEqual(validationResult.value.mechanics);
     expect(fixture.nativeElement.textContent).not.toContain(
       'Содержимое страницы загружено',
     );

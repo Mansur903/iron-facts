@@ -1,0 +1,150 @@
+@media (max-width: 63.999rem) {
+  .mechanics {
+    &__content {
+      padding-block: var(--space-10) 6rem;
+    }
+
+    &__stats {
+      max-inline-size: 35rem;
+      margin-block-start: var(--space-8);
+    }
+
+    &__timeline-image {
+      display: none;
+    }
+
+    &__stat {
+      position: relative;
+      min-block-size: 13rem;
+      grid-template-columns: 3rem minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      column-gap: 1.25rem;
+
+      &:last-of-type {
+        min-block-size: 13rem;
+      }
+
+      &::after {
+        position: absolute;
+        inset-block-start: 3.875rem;
+        inset-block-end: 0;
+        inset-inline-start: 1.5625rem;
+        inline-size: 0.25rem;
+        background: repeating-linear-gradient(
+          to bottom,
+          var(--color-mechanics-marker-muted) 0 0.5rem,
+          transparent 0.5rem 1.25rem
+        );
+        content: '';
+      }
+
+      &:first-of-type::after {
+        background: repeating-linear-gradient(
+          to bottom,
+          var(--color-leaderboard-first) 0 0.5rem,
+          transparent 0.5rem 1.25rem
+        );
+      }
+
+      &:last-of-type::after {
+        content: none;
+      }
+    }
+
+    &__marker {
+      position: absolute;
+      z-index: 1;
+      inset-block-start: 2.375rem;
+      inset-inline-start: 0.75rem;
+      display: block;
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      border: 0.25rem solid var(--color-mechanics-marker-muted);
+      background: var(--color-surface);
+      transform: rotate(45deg);
+    }
+
+    &__stat:first-of-type .mechanics__marker {
+      border-color: var(--color-leaderboard-first);
+      background: var(--color-leaderboard-first);
+    }
+
+    &__value {
+      grid-column: 2;
+      justify-self: start;
+      font-size: clamp(5.25rem, 14vw, 7rem);
+      transform-origin: left center;
+    }
+
+    &__copy {
+      grid-column: 2;
+      margin-block-start: 0;
+      padding-inline-start: 0;
+    }
+
+    &__label {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 37.499rem) {
+  .mechanics {
+    &::after {
+      inline-size: 36%;
+      block-size: 2rem;
+      clip-path: polygon(1.5rem 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    &__content {
+      padding-block: 3.25rem 3.5rem;
+    }
+
+    &__eyebrow {
+      margin-block-end: var(--space-4);
+    }
+
+    &__title {
+      font-size: 1.875rem;
+      letter-spacing: -0.05em;
+    }
+
+    &__title-accent {
+      display: block;
+    }
+
+    &__stats {
+      margin-block-start: 2.75rem;
+    }
+
+    &__stat {
+      min-block-size: 12rem;
+      column-gap: 1.25rem;
+
+      &:last-of-type {
+        min-block-size: 12rem;
+      }
+
+      &:first-of-type {
+        min-block-size: 12.75rem;
+      }
+
+      &:nth-of-type(2) {
+        min-block-size: 11.25rem;
+      }
+    }
+
+    &__value {
+      font-size: clamp(5rem, 23vw, 5.5rem);
+    }
+
+    &__label {
+      margin-block-end: var(--space-3);
+      font-size: 1.25rem;
+    }
+
+    &__copy {
+      margin-block-start: var(--space-2);
+    }
+  }
+}

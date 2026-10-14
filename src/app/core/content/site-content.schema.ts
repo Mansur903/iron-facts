@@ -165,6 +165,8 @@ export const mechanicsContentSchema = v.object(
   {
     eyebrow: nonEmptyStringSchema,
     title: nonEmptyStringSchema,
+    titleAccent: v.optional(nonEmptyStringSchema),
+    timelineImage: v.optional(assetReferenceSchema),
     stats: nonEmptyArray(mechanicStatSchema),
   },
   EXPECTED_OBJECT_MESSAGE,

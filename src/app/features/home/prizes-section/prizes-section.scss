@@ -6,8 +6,21 @@
   --prizes-sticky-top: 5rem;
   --prizes-reveal: 4.375rem;
 
+  position: relative;
   padding-block: 5rem;
   background: var(--color-surface);
+
+  &::after {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    inline-size: 30%;
+    block-size: 2.5rem;
+    background: var(--color-leaderboard-background);
+    clip-path: polygon(1.875rem 0, 100% 0, 100% 100%, 0 100%);
+    content: '';
+    pointer-events: none;
+  }
 
   &__layout {
     display: grid;
@@ -120,6 +133,12 @@
 @media (max-width: 37.499rem) {
   .prizes {
     --prizes-reveal: 3rem;
+
+    &::after {
+      inline-size: 36%;
+      block-size: 2rem;
+      clip-path: polygon(1.5rem 0, 100% 0, 100% 100%, 0 100%);
+    }
 
     padding-block: var(--space-8) var(--space-10);
 
