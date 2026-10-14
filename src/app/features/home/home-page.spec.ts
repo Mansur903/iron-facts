@@ -10,6 +10,7 @@ import { SiteHeaderComponent } from '../../layout/site-header/site-header';
 import siteContent from '../../../../public/config/site-content.json';
 import { HeroSectionComponent } from './hero-section/hero-section';
 import { HomePageComponent } from './home-page';
+import { PrizesSectionComponent } from './prizes-section/prizes-section';
 
 describe('HomePageComponent', () => {
   const state = signal<SiteContentState>({ status: 'loading' });
@@ -68,9 +69,12 @@ describe('HomePageComponent', () => {
       .componentInstance as SiteHeaderComponent;
     const hero = fixture.debugElement.query(By.directive(HeroSectionComponent))
       .componentInstance as HeroSectionComponent;
+    const prizes = fixture.debugElement.query(By.directive(PrizesSectionComponent))
+      .componentInstance as PrizesSectionComponent;
 
     expect(header.navigation()).toEqual(validationResult.value.navigation);
     expect(hero.content()).toEqual(validationResult.value.hero);
+    expect(prizes.content()).toEqual(validationResult.value.prizes);
     expect(fixture.nativeElement.textContent).not.toContain(
       'Содержимое страницы загружено',
     );

@@ -103,6 +103,7 @@ export const prizeItemSchema = v.object(
     id: nonEmptyStringSchema,
     eyebrow: nonEmptyStringSchema,
     title: nonEmptyStringSchema,
+    titleAccent: v.optional(nonEmptyStringSchema),
     description: nonEmptyStringSchema,
     variant: v.picklist(
       ['guaranteed', 'knowledge', 'grand'],
@@ -117,6 +118,7 @@ export const prizesContentSchema = v.object(
   {
     eyebrow: nonEmptyStringSchema,
     title: nonEmptyStringSchema,
+    titleAccent: v.optional(nonEmptyStringSchema),
     description: nonEmptyStringSchema,
     rules: nonEmptyArray(nonEmptyStringSchema),
     playLink: contentLinkSchema,

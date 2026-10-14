@@ -1,0 +1,160 @@
+:host {
+  display: block;
+}
+
+.prizes {
+  --prizes-sticky-top: 5rem;
+  --prizes-reveal: 4.375rem;
+
+  padding-block: 5rem;
+  background: var(--color-surface);
+
+  &__layout {
+    display: grid;
+    grid-template-columns: minmax(17rem, 25rem) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(2rem, 5.55vw, 5rem);
+  }
+
+  &__intro {
+    position: sticky;
+    top: var(--prizes-sticky-top);
+    display: flex;
+    min-block-size: 38.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__eyebrow {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    max-inline-size: 20rem;
+    margin: 0;
+    font-family: var(--font-family-display);
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 800;
+    line-height: var(--line-height-tight);
+    text-transform: uppercase;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__title-accent {
+    color: var(--color-brand);
+  }
+
+  &__description {
+    max-inline-size: 22rem;
+    margin: var(--space-5) 0 var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+  }
+
+  &__rules {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__rule {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+  }
+
+  &__rule-check {
+    color: var(--color-brand);
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  &__action {
+    inline-size: 14.625rem;
+    margin-block-start: auto;
+  }
+
+  &__cards {
+    display: grid;
+    gap: var(--space-5);
+    min-inline-size: 0;
+  }
+}
+
+@media (max-width: 63.999rem) {
+  .prizes {
+    --prizes-sticky-top: 1rem;
+    --prizes-reveal: 3.75rem;
+
+    &__layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__intro {
+      position: static;
+      min-block-size: 0;
+      max-inline-size: 50rem;
+      gap: var(--space-7);
+      margin-inline: auto;
+    }
+
+    &__cards {
+      inline-size: min(100%, 50rem);
+      margin-inline: auto;
+    }
+  }
+}
+
+@media (max-width: 37.499rem) {
+  .prizes {
+    --prizes-reveal: 3rem;
+
+    padding-block: var(--space-8) var(--space-10);
+
+    &__layout {
+      gap: var(--space-5);
+    }
+
+    &__eyebrow,
+    &__title,
+    &__description {
+      text-align: center;
+    }
+
+    &__title {
+      max-inline-size: 16rem;
+      margin-inline: auto;
+      font-size: clamp(1.875rem, 8vw, 2.25rem);
+    }
+
+    &__description {
+      margin: var(--space-4) auto var(--space-5);
+    }
+
+    &__rules {
+      gap: var(--space-3);
+    }
+
+    &__rule {
+      gap: var(--space-3);
+      font-size: 0.9375rem;
+    }
+
+    &__action {
+      display: none;
+    }
+  }
+
+}

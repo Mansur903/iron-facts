@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SiteContentService } from '../../core/content/site-content.service';
 import { SiteHeaderComponent } from '../../layout/site-header/site-header';
 import { HeroSectionComponent } from './hero-section/hero-section';
+import { PrizesSectionComponent } from './prizes-section/prizes-section';
 
 @Component({
   selector: 'app-home-page',
-  imports: [HeroSectionComponent, SiteHeaderComponent],
+  imports: [HeroSectionComponent, PrizesSectionComponent, SiteHeaderComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

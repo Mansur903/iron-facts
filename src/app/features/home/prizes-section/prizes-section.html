@@ -1,0 +1,67 @@
+<section id="prizes" class="prizes" aria-labelledby="prizes-title">
+  <div class="prizes__layout app-container">
+    <div class="prizes__intro">
+      <div>
+        <p class="prizes__eyebrow">{{ content().eyebrow }}</p>
+        <h2 id="prizes-title" class="prizes__title">
+          <span>{{ content().title }}</span>
+          @if (content().titleAccent; as accent) {
+            <span class="prizes__title-accent">{{ accent }}</span>
+          }
+        </h2>
+        <p class="prizes__description">{{ content().description }}</p>
+        <ul class="prizes__rules">
+          @for (rule of content().rules; track $index) {
+            <li class="prizes__rule">
+              <span class="prizes__rule-check" aria-hidden="true">✓</span>
+              {{ rule }}
+            </li>
+          }
+        </ul>
+      </div>
+
+      <app-button
+        class="prizes__action"
+        size="large"
+        [stretch]="true"
+        [label]="content().playLink.label"
+        [href]="content().playLink.href"
+        [external]="content().playLink.external ?? false"
+      />
+    </div>
+
+    <div class="prizes__cards">
+      @for (item of content().items; track item.id; let index = $index) {
+        <article
+          class="prize-card"
+          [class.prize-card--guaranteed]="item.variant === 'guaranteed'"
+          [class.prize-card--knowledge]="item.variant === 'knowledge'"
+          [class.prize-card--grand]="item.variant === 'grand'"
+          [style.--prize-index]="index"
+        >
+          @if (item.image; as image) {
+            <img
+              class="prize-card__image"
+              [src]="image.src"
+              [alt]="image.alt"
+              [attr.width]="image.width ?? null"
+              [attr.height]="image.height ?? null"
+              loading="lazy"
+              decoding="async"
+            />
+          }
+          <p class="prize-card__eyebrow">/ {{ item.eyebrow }}</p>
+          <div class="prize-card__copy">
+            <h3 class="prize-card__title">
+              <span>{{ item.title }}</span>
+              @if (item.titleAccent; as accent) {
+                <span class="prize-card__title-accent">{{ accent }}</span>
+              }
+            </h3>
+            <p class="prize-card__description">{{ item.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

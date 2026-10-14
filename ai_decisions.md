@@ -171,6 +171,16 @@ Asset references остаются необязательными до появл
 | Галочка ответа «Да» | `1:1412` — source component; ID внутреннего слоя не предоставлен | `public/assets/hero/answer-check.svg` | SVG | Desktop и mobile |
 | Диагональные полосы hero | `1:1264` — source frame; ID внутреннего слоя не предоставлен | `public/assets/hero/rail-pattern.png` | PNG с alpha | Desktop и mobile |
 | Зубчатая плашка слова «ФАКТЫ» | `1:1264` — source frame; ID внутреннего слоя не предоставлен | `public/assets/hero/title-facts-background.png` | PNG с alpha | Desktop и mobile |
+| Иллюстрация зданий для промокода | `1:1588` и `1:271` — source frames; ID внутреннего слоя не предоставлен | `public/assets/prizes/experience-buildings.svg` | SVG | Desktop и mobile |
+| Иллюстрация подарка для сертификата | `1:1588` и `1:271` — source frames; ID внутреннего слоя не предоставлен | `public/assets/prizes/knowledge-gift.svg` | SVG | Desktop и mobile |
+| Красный пейзаж с поездом для главного приза | `1:2104` — source frame финального состояния; ID внутреннего слоя не предоставлен | `public/assets/prizes/travel-train.png` | PNG | Desktop и mobile |
+
+Для секции призов необязательное поле `titleAccent` в runtime JSON задаёт выделенную строку
+заголовка отдельно от основного текста. Поле добавлено без изменения `schemaVersion`: прежний
+заголовок без акцентной строки остаётся валидным. Карточки перекрываются CSS `position: sticky`
+с порядковым `z-index`, а при `prefers-reduced-motion: reduce` выводятся обычной последовательностью.
+В mobile-скриншоте подпись третьей карточки повторяет «Приз за знания», тогда как desktop-макет
+показывает «Главный приз». Использована подпись desktop-макета, согласующаяся с содержанием приза.
 
 В репозитории не обнаружены WOFF2/WOFF/TTF/OTF-файлы корпоративных шрифтов и документы,
 подтверждающие право их распространения. До получения официальных файлов и лицензии используется

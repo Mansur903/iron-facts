@@ -1,0 +1,160 @@
+.prize-card {
+  position: sticky;
+  z-index: calc(var(--prize-index) + 1);
+  top: calc(var(--prizes-sticky-top) + var(--prize-index) * var(--prizes-reveal));
+  display: flex;
+  min-block-size: 30rem;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.75rem;
+  background: var(--color-surface-subtle);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3.5rem), calc(100% - 3.5rem) 100%, 0 100%);
+
+  &__image {
+    position: absolute;
+    z-index: 0;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    max-inline-size: 44%;
+    max-block-size: 90%;
+    object-fit: contain;
+    object-position: bottom right;
+    pointer-events: none;
+  }
+
+  &__eyebrow,
+  &__copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__eyebrow {
+    margin: 0;
+    color: var(--color-prize-ink);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__copy {
+    inline-size: 61%;
+    margin-block: auto;
+  }
+
+  &__title {
+    margin: 0 0 var(--space-4);
+    color: var(--color-prize-ink);
+    font-family: var(--font-family-display);
+    font-size: clamp(2rem, 3.1vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.07;
+    text-transform: uppercase;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__title-accent {
+    color: var(--color-brand);
+  }
+
+  &__description {
+    max-inline-size: 25rem;
+    margin: 0;
+    color: var(--color-prize-ink);
+    font-size: var(--font-size-md);
+  }
+
+  &--knowledge {
+    background: var(--color-prize-card-secondary);
+
+    .prize-card__image {
+      inset-block-end: 1rem;
+      inset-inline-end: 2rem;
+      max-inline-size: 38%;
+    }
+  }
+
+  &--grand {
+    background: var(--color-brand);
+
+    .prize-card__image {
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      max-inline-size: none;
+      max-block-size: none;
+      object-fit: cover;
+    }
+
+    .prize-card__eyebrow,
+    .prize-card__title,
+    .prize-card__title-accent,
+    .prize-card__description {
+      color: var(--color-text-on-brand);
+    }
+  }
+}
+
+@media (max-width: 37.499rem) {
+  .prize-card {
+    min-block-size: 30rem;
+    padding: var(--space-5) var(--space-4);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.75rem), calc(100% - 2.75rem) 100%, 0 100%);
+
+    &__eyebrow {
+      font-size: var(--font-size-xs);
+    }
+
+    &__copy {
+      inline-size: 100%;
+      margin-block: var(--space-6) auto;
+    }
+
+    &__title {
+      max-inline-size: 18rem;
+      font-size: clamp(1.75rem, 8vw, 2.125rem);
+    }
+
+    &__description {
+      max-inline-size: 18rem;
+    }
+
+    &__image {
+      max-inline-size: 68%;
+      max-block-size: 42%;
+    }
+
+    &--guaranteed {
+      min-block-size: 31rem;
+    }
+
+    &--knowledge .prize-card__image {
+      inset-block-end: 0;
+      inset-inline-end: 0;
+      max-inline-size: 70%;
+      max-block-size: 50%;
+    }
+
+    &--grand {
+      .prize-card__copy {
+        margin-block-start: var(--space-7);
+      }
+
+      .prize-card__image {
+        max-inline-size: none;
+        max-block-size: none;
+        object-position: 70% center;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prize-card {
+    position: relative;
+    top: auto;
+  }
+}
