@@ -1,59 +1,81 @@
-# IronFacts
+# Железные факты
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+Адаптивная промостраница корпоративной викторины РЖД: карточки вопросов, призы, рейтинг
+участников и механика игры. Прототип реализован на Angular по desktop- и mobile-макетам Figma.
 
-## Development server
+**Angular 21 · TypeScript · Signals · SCSS · Valibot · Vitest**
 
-To start a local development server, run:
+**Демо:** ссылка на опубликованную версию будет добавлена после развёртывания.
 
-```bash
-ng serve
-```
+Реализованы все секции макета, автосмена карточек, бегущая строка, перекрытие призов при
+прокрутке и мобильное меню. Изменяемый контент вынесен в
+[site-content.json](public/config/site-content.json) и проверяется через Valibot.
+Поддерживается `prefers-reduced-motion`; вёрстка проверялась на ширинах 320–4096 px.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Код, исправления и тесты созданы AI-агентом под управлением автора проекта. Решения и
+итерации доступны в материалах для ревью ниже.
 
-## Code scaffolding
+## Запуск
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Понадобятся Node.js и npm. Angular CLI проекта поддерживает Node.js `^20.19.0`,
+`^22.12.0` или `>=24.0.0`; для зависимостей используется `package-lock.json`.
 
 ```bash
-ng generate --help
+npm ci
+npm start
 ```
 
-## Building
+Откройте [localhost:4200](http://localhost:4200/). При изменении исходников dev-сервер
+автоматически обновляет страницу.
 
-To build the project run:
+## Сборка и проверки
 
 ```bash
-ng build
+# Production-сборка
+npm run build
+
+# Однократный запуск unit-тестов
+npm test -- --watch=false
+
+# Тесты в режиме наблюдения
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Production-файлы создаются в `dist/iron-facts/browser/`. Этот каталог можно опубликовать
+на статическом хостинге; для прямых обращений к маршрутам сервер должен возвращать `index.html`.
 
-## Running unit tests
+В проекте **50 unit-тестов** для контента, интерактивности и отображения секций.
+E2E-тесты и отдельный линтер не настроены.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Как устроен репозиторий
 
-```bash
-ng test
+```text
+src/app/
+├── core/content/     # Загрузка JSON, схемы Valibot, модели и ошибки
+├── features/home/    # Главная страница и её секции
+├── layout/           # Header и footer
+└── shared/           # Общая кнопка и её типы
+src/styles.scss       # Дизайн-токены и базовые стили
+public/
+├── config/           # Редактируемый контент
+└── assets/           # Локальные SVG и изображения
+docs/                 # Задание и визуальные референсы
 ```
 
-## Running end-to-end tests
+## Материалы для ревью
 
-For end-to-end (e2e) testing, run:
+| Документ | Что в нём |
+| --- | --- |
+| [Архитектурные решения](ai_decisions.md) | План этапов, выбор моделей и инструментов, причины решений и визуальные коррекции |
+| [История промптов](prompts.md) | Запросы к агенту и результаты итераций |
+| [Известные ограничения](KNOWN_ISSUES.md) | Шрифты, точность ассетов, временные ссылки и плейсхолдеры |
+| [Правила агента](AGENTS.md) | Требования к коду, проверкам и процессу работы |
+| [Тестовое задание](docs/assignment.md) | Исходные требования |
+| [Визуальные референсы](docs/reference/README.md) | Рабочая Figma-копия и desktop/mobile-макеты |
+| [Конфигурация Angular MCP](.vscode/mcp.json) | Настройка подключения Angular CLI для агента |
 
-```bash
-ng e2e
-```
+## Границы прототипа
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Игровой сценарий и внутренние страницы не реализованы; навигация работает через якоря.
+Временные ссылки, плейсхолдеры и визуальные ограничения описаны в
+[KNOWN_ISSUES.md](KNOWN_ISSUES.md).
