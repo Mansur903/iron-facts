@@ -35,6 +35,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/iron-facts/",
               "budgets": [
                 {
                   "type": "initial",
