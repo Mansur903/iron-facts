@@ -93,6 +93,10 @@
       color: var(--color-brand);
       transform: scale(1.035);
     }
+
+    &--active .mechanics__copy {
+      opacity: 1;
+    }
   }
 
   &__marker {
@@ -119,6 +123,8 @@
     min-inline-size: 0;
     margin-block-start: 6rem;
     padding-inline-start: var(--space-4);
+    opacity: 0.55;
+    transition: opacity 450ms var(--easing-standard);
   }
 
   &__label {
